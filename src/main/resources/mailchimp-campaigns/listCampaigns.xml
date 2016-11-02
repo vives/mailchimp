@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<template name="listCampaigns" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="fields" description="A comma-separated list of fields to return."/>
+    <parameter name="excludeFields" description="A comma-separated list of fields to exclude."/>
+    <parameter name="count" description="The number of records to return."/>
+    <parameter name="offset" description="The number of records from a collection to skip."/>
+    <parameter name="type" description="The campaign type."/>
+    <parameter name="status" description="The status of the campaign."/>
+    <parameter name="beforeSendTime" description="The campaigns sent before the set time in ISO 8601 time format."/>
+    <parameter name="sinceSendTime" description="The campaigns sent after the set time in ISO 8601 time format."/>
+    <parameter name="beforeCreateTime" description="The campaigns created before the set time in ISO 8601 time format."/>
+    <parameter name="sinceCreateTime" description="The campaigns created after the set time in ISO 8601 time format."/>
+    <parameter name="listId" description="The unique id for the list."/>
+    <parameter name="folderId" description="The unique folder id."/>
+    <sequence>
+        <property name="uri.var.fields" expression="$func:fields"/>
+        <property name="uri.var.excludeFields" expression="$func:excludeFields"/>
+        <property name="uri.var.count" expression="$func:count"/>
+        <property name="uri.var.offset" expression="$func:offset"/>
+        <property name="uri.var.type" expression="$func:type"/>
+        <property name="uri.var.status" expression="$func:status"/>
+        <property name="uri.var.beforeSendTime" expression="$func:beforeSendTime"/>
+        <property name="uri.var.sinceSendTime" expression="$func:sinceSendTime"/>
+        <property name="uri.var.beforeCreateTime" expression="$func:beforeCreateTime"/>
+        <property name="uri.var.sinceCreateTime" expression="$func:sinceCreateTime"/>
+        <property name="uri.var.listId" expression="$func:listId"/>
+        <property name="uri.var.folderId" expression="$func:folderId"/>
+        <script language="js">
+            <![CDATA[
+            var fields = mc.getProperty('uri.var.fields');
+            var excludeFields = mc.getProperty('uri.var.excludeFields');
+            var count = mc.getProperty('uri.var.count');
+            var offset = mc.getProperty('uri.var.offset');
+            var type = mc.getProperty('uri.var.type');
+            var status = mc.getProperty('uri.var.status');
+            var beforeSendTime = mc.getProperty('uri.var.beforeSendTime');
+            var sinceSendTime = mc.getProperty('uri.var.sinceSendTime');
+            var beforeCreateTime = mc.getProperty('uri.var.beforeCreateTime');
+            var sinceCreateTime = mc.getProperty('uri.var.sinceCreateTime');
+            var listId = mc.getProperty('uri.var.listId');
+            var folderId = mc.getProperty('uri.var.folderId');
+            var urlQuery="";
+
+            if (fields != null && fields != ""){
+                urlQuery += 'fields=' + fields + '&';
+            }
+            if (excludeFields != null && excludeFields != ""){
+                urlQuery += 'exclude_fields=' + excludeFields + '&';
+            }
+            if (count != null && count != ""){
+                urlQuery += 'count=' + count + '&';
+            }
+            if (offset != null && offset != ""){
+                urlQuery += 'offset=' + offset + '&';
+            }
+            if (type != null && type != ""){
+                urlQuery += 'type=' + type + '&';
+            }
+            if (status != null && status != ""){
+                urlQuery += 'status=' + status + '&';
+            }
+            if (beforeSendTime != null && beforeSendTime != ""){
+                urlQuery += 'before_send_time=' + beforeSendTime + '&';
+            }
+            if (sinceSendTime != null && sinceSendTime != ""){
+                urlQuery += 'since_send_time=' + sinceSendTime + '&';
+            }
+            if (beforeCreateTime != null && beforeCreateTime != ""){
+                urlQuery += 'before_create_time=' + beforeCreateTime + '&';
+            }
+            if (sinceCreateTime != null && sinceCreateTime != ""){
+                urlQuery += 'since_create_time=' + sinceCreateTime + '&';
+            }
+            if (listId != null && listId != ""){
+                urlQuery += 'list_id=' + listId + '&';
+            }
+            if (folderId != null && folderId != ""){
+                urlQuery += 'folder_id=' + folderId + '&';
+            }
+            if (urlQuery != null && urlQuery != ""){
+                urlQuery = '?' + urlQuery.toString().substring(0, urlQuery.toString().lastIndexOf("&"));
+                mc.setProperty('uri.var.urlQuery',urlQuery);
+            }
+         ]]>
+        </script>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <filter source="$ctx:mailchimpBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="GET" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns{+uri.var.urlQuery}"/>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="GET" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns{+uri.var.urlQuery}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+    </sequence>
+</template>

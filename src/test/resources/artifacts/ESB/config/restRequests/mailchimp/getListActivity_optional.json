@@ -1,0 +1,8 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listId)",
+  "fields": "activity.day"
+}

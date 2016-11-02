@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<template name="addCampaignFeedback" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="campaignId" description="The unique id for the campaign."/>
+    <parameter name="blockId" description="The block id for the editable block that the feedback addresses."/>
+    <parameter name="message" description="The content of the feedback."/>
+    <parameter name="isComplete" description="The status of feedback."/>
+    <sequence>
+        <property name="uri.var.blockId" expression="$func:blockId"/>
+        <property name="uri.var.message" expression="$func:message"/>
+        <property name="uri.var.isComplete" expression="$func:isComplete"/>
+        <property name="uri.var.campaignId" expression="$func:campaignId"/>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                "message":"$1"
+                }
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.message"/>
+            </args>
+        </payloadFactory>
+        <script language="js">
+            <![CDATA[
+            var blockId = mc.getProperty('uri.var.blockId');
+            var isComplete = mc.getProperty('uri.var.isComplete');
+            var payload = mc.getPayloadJSON();
+
+            if (blockId != null && blockId != ""){
+                payload.block_id = parseInt(blockId)
+            }
+            if (isComplete != null && isComplete != ""){
+                payload.is_complete = isComplete
+            }
+            mc.setPayloadJSON(payload);
+         ]]>
+        </script>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <filter source="$ctx:mailchimpBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="POST"
+                              uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns/{uri.var.campaignId}/feedback"/>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="POST"
+                              uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns/{uri.var.campaignId}/feedback"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+    </sequence>
+</template>

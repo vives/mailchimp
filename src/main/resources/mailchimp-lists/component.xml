@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<component name="mailchimp-lists" type="synapse/template">
+    <subComponents>
+        <component name="createList">
+            <file>createList.xml</file>
+            <description>Create a new list.</description>
+        </component>
+        <component name="listLists">
+            <file>listLists.xml</file>
+            <description>Get information about all lists.</description>
+        </component>
+        <component name="getList">
+            <file>getList.xml</file>
+            <description>Get information about a specific list.</description>
+        </component>
+        <component name="deleteList">
+            <file>deleteList.xml</file>
+            <description>Delete a list.</description>
+        </component>
+        <component name="listListAbuseReports">
+            <file>listListAbuseReports.xml</file>
+            <description>Get information about abuse reports.</description>
+        </component>
+        <component name="getListActivity">
+            <file>getListActivity.xml</file>
+            <description>Get recent list activity.</description>
+        </component>
+        <component name="subscribeOrUnsubscribeListMembers">
+            <file>subscribeOrUnsubscribeListMembers.xml</file>
+            <description>Batch subscribe or unsubscribe list members.</description>
+        </component>
+        <component name="updateList">
+            <file>updateList.xml</file>
+            <description>Update a specific list.</description>
+        </component>
+    </subComponents>
+</component>

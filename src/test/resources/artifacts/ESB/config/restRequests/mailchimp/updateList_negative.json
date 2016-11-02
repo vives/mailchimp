@@ -1,0 +1,20 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listId)",
+  "name": "",
+  "company": "%s(newCompany)",
+  "address1": "%s(address1)",
+  "city": "%s(city)",
+  "state": "%s(state)",
+  "zip": "%s(zip)",
+  "country": "%s(country)",
+  "permissionReminder": "%s(permissionReminder)",
+  "fromName": "%s(newFromName)",
+  "fromEmail": "%s(newFromEmail)",
+  "subject": "%s(subject)",
+  "language": "%s(language)",
+  "emailTypeOption": "%s(emailTypeOption)"
+}

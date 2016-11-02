@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<component name="mailchimp-reports" type="synapse/template">
+    <subComponents>
+        <component name="listReports">
+            <file>listReports.xml</file>
+            <description>Get campaign reports.</description>
+        </component>
+        <component name="getReport">
+            <file>getReport.xml</file>
+            <description>Get a specific campaign report.</description>
+        </component>
+        <component name="listCampaignAbuseReports">
+            <file>listCampaignAbuseReports.xml</file>
+            <description>Get abuse complaints for a campaign.</description>
+        </component>
+        <component name="listClickReports">
+            <file>listClickReports.xml</file>
+            <description>Get campaign click details.</description>
+        </component>
+        <component name="getClickReport">
+            <file>getClickReport.xml</file>
+            <description>Get click details for a specific link in a campaign.</description>
+        </component>
+        <component name="getLocation">
+            <file>getLocation.xml</file>
+            <description>Get top open locations for a specific campaign.</description>
+        </component>
+        <component name="listSentTo">
+            <file>listSentTo.xml</file>
+            <description>Get information about campaign recipients.</description>
+        </component>
+        <component name="listUnsubscribes">
+            <file>listUnsubscribes.xml</file>
+            <description>Get unsubscribed list members.</description>
+        </component>
+        <component name="getCampaignAbuseReport">
+            <file>getCampaignAbuseReport.xml</file>
+            <description>Get unsubscribed list members.</description>
+        </component>
+    </subComponents>
+</component>

@@ -1,0 +1,23 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listIdOpt)",
+  "name": "%s(newNameOpt)",
+  "company": "%s(company)",
+  "address1": "%s(address1)",
+  "city": "%s(city)",
+  "state": "%s(state)",
+  "zip": "%s(zip)",
+  "country": "%s(country)",
+  "permissionReminder": "%s(permissionReminder)",
+  "fromName": "%s(fromName)",
+  "fromEmail": "%s(fromEmail)",
+  "subject": "%s(subject)",
+  "language": "%s(language)",
+  "emailTypeOption": "%s(emailTypeOption)",
+  "phone": "%s(newPhoneOpt)",
+  "visibility": "%s(visibility)",
+  "notifyOnSubscribe": "%s(notifyOnSubscribe)"
+}

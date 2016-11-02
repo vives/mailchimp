@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="mailchimp" transports="https,http" statistics="disable"
+       trace="disable" startOnLoad="true">
+    <target>
+        <inSequence>
+            <property expression="json-eval($.apiVersion)" name="apiVersion"/>
+            <property expression="json-eval($.apiUrl)" name="apiUrl"/>
+            <property expression="json-eval($.accessToken)" name="accessToken"/>
+            <property expression="json-eval($.blocking)" name="blocking"/>
+            <property expression="json-eval($.fields)" name="fields"/>
+            <property expression="json-eval($.excludeFields)" name="excludeFields"/>
+            <property expression="json-eval($.count)" name="count"/>
+            <property expression="json-eval($.offset)" name="offset"/>
+            <property expression="json-eval($.type)" name="type"/>
+            <property expression="json-eval($.status)" name="status"/>
+            <property expression="json-eval($.beforeSendTime)" name="beforeSendTime"/>
+            <property expression="json-eval($.sinceSendTime)" name="sinceSendTime"/>
+            <property expression="json-eval($.beforeCreateTime)" name="beforeCreateTime"/>
+            <property expression="json-eval($.sinceCreateTime)" name="sinceCreateTime"/>
+            <property expression="json-eval($.listId)" name="listId"/>
+            <property expression="json-eval($.campaignId)" name="campaignId"/>
+            <property expression="json-eval($.frequency)" name="frequency"/>
+            <property expression="json-eval($.subjectLine)" name="subjectLine"/>
+            <property expression="json-eval($.fromName)" name="fromName"/>
+            <property expression="json-eval($.replyTo)" name="replyTo"/>
+            <property expression="json-eval($.autoFooter)" name="autoFooter"/>
+            <property expression="json-eval($.folderId)" name="folderId"/>
+            <property expression="json-eval($.segmentOpts)" name="segmentOpts"/>
+            <property expression="json-eval($.authenticate)" name="authenticate"/>
+            <property expression="json-eval($.autoFbPost)" name="autoFbPost"/>
+            <property expression="json-eval($.waitTime)" name="waitTime"/>
+            <property expression="json-eval($.testSize)" name="testSize"/>
+            <property expression="json-eval($.savedSegmentId)" name="savedSegmentId"/>
+            <property expression="json-eval($.query)" name="query"/>
+            <property expression="json-eval($.snipStart)" name="snipStart"/>
+            <property expression="json-eval($.snipEnd)" name="snipEnd"/>
+            <property expression="json-eval($.blockId)" name="blockId"/>
+            <property expression="json-eval($.message)" name="message"/>
+            <property expression="json-eval($.isComplete)" name="isComplete"/>
+            <property expression="json-eval($.feedbackId)" name="feedbackId"/>
+            <property expression="json-eval($.winnerCriteria)" name="winnerCriteria"/>
+            <property expression="json-eval($.opens)" name="opens"/>
+            <property expression="json-eval($.textClicks)" name="textClicks"/>
+            <property expression="json-eval($.description)" name="description"/>
+            <property expression="json-eval($.title)" name="title"/>
+            <property expression="json-eval($.feedUrl)" name="feedUrl"/>
+            <property expression="json-eval($.salesforce)" name="salesforce"/>
+            <property expression="json-eval($.savedSegmentId)" name="savedSegmentId"/>
+            <property expression="json-eval($.match)" name="match"/>
+            <property expression="json-eval($.conditions)" name="conditions"/>
+            <property expression="json-eval($.name)" name="name"/>
+            <property expression="json-eval($.company)" name="company"/>
+            <property expression="json-eval($.address1)" name="address1"/>
+            <property expression="json-eval($.address2)" name="address2"/>
+            <property expression="json-eval($.city)" name="city"/>
+            <property expression="json-eval($.state)" name="state"/>
+            <property expression="json-eval($.zip)" name="zip"/>
+            <property expression="json-eval($.country)" name="country"/>
+            <property expression="json-eval($.phone)" name="phone"/>
+            <property expression="json-eval($.permissionReminder)" name="permissionReminder"/>
+            <property expression="json-eval($.useArchiveBar)" name="useArchiveBar"/>
+            <property expression="json-eval($.fromName)" name="fromName"/>
+            <property expression="json-eval($.fromEmail)" name="fromEmail"/>
+            <property expression="json-eval($.subject)" name="subject"/>
+            <property expression="json-eval($.language)" name="language"/>
+            <property expression="json-eval($.notifyOnSubscribe)" name="notifyOnSubscribe"/>
+            <property expression="json-eval($.notifyOnUnubcribe)" name="notifyOnUnubcribe"/>
+            <property expression="json-eval($.emailTypeOption)" name="emailTypeOption"/>
+            <property expression="json-eval($.visibility)" name="visibility"/>
+            <property expression="json-eval($.beforeCampaignLastSent)"
+                      name="beforeCampaignLastSent"/>
+            <property expression="json-eval($.sinceCampaignLastSent)"
+                      name="sinceCampaignLastSent"/>
+            <property expression="json-eval($.beforeDateCreated)" name="beforeDateCreated"/>
+            <property expression="json-eval($.sinceDateCreated)" name="sinceDateCreated"/>
+            <property expression="json-eval($.email)" name="email"/>
+            <property expression="json-eval($.imageUrl)" name="imageUrl"/>
+            <property expression="json-eval($.members)" name="members"/>
+            <property expression="json-eval($.updateExisting)" name="updateExisting"/>
+            <mailchimp.init>
+                <apiUrl>{$ctx:apiUrl}</apiUrl>
+                <apiVersion>{$ctx:apiVersion}</apiVersion>
+                <accessToken>{$ctx:accessToken}</accessToken>
+                <blocking>{$ctx:blocking}</blocking>
+            </mailchimp.init>
+            <switch source="get-property('transport', 'Action')">
+                <case regex="urn:listCampaigns">
+                    <mailchimp.listCampaigns>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                        <type>{$ctx:type}</type>
+                        <status>{$ctx:status}</status>
+                        <beforeSendTime>{$ctx:beforeSendTime}</beforeSendTime>
+                        <sinceSendTime>{$ctx:sinceSendTime}</sinceSendTime>
+                        <beforeCreateTime>{$ctx:beforeCreateTime}</beforeCreateTime>
+                        <sinceCreateTime>{$ctx:sinceCreateTime}</sinceCreateTime>
+                        <listId>{$ctx:listId}</listId>
+                        <folderId>{$ctx:folderId}</folderId>
+                    </mailchimp.listCampaigns>
+                </case>
+                <case regex="urn:getCampaign">
+                    <mailchimp.getCampaign>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getCampaign>
+                </case>
+                <case regex="urn:getSendCheckList">
+                    <mailchimp.getSendCheckList>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getSendCheckList>
+                </case>
+                <case regex="urn:getCampaignContent">
+                    <mailchimp.getCampaignContent>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getCampaignContent>
+                </case>
+                <case regex="urn:searchCampaign">
+                    <mailchimp.searchCampaign>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <query>{$ctx:query}</query>
+                        <snipStart>{$ctx:snipStart}</snipStart>
+                        <snipEnd>{$ctx:snipEnd}</snipEnd>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.searchCampaign>
+                </case>
+                <case regex="urn:addCampaignFeedback">
+                    <mailchimp.addCampaignFeedback>
+                        <blockId>{$ctx:blockId}</blockId>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <message>{$ctx:message}</message>
+                        <isComplete>{$ctx:isComplete}</isComplete>
+                    </mailchimp.addCampaignFeedback>
+                </case>
+                <case regex="urn:updateCampaignFeedback">
+                    <mailchimp.updateCampaignFeedback>
+                        <blockId>{$ctx:blockId}</blockId>
+                        <feedbackId>{$ctx:feedbackId}</feedbackId>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <message>{$ctx:message}</message>
+                        <isComplete>{$ctx:isComplete}</isComplete>
+                    </mailchimp.updateCampaignFeedback>
+                </case>
+                <case regex="urn:listCampaignFeedback">
+                    <mailchimp.listCampaignFeedback>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.listCampaignFeedback>
+                </case>
+                <case regex="urn:getCampaignFeedback">
+                    <mailchimp.getCampaignFeedback>
+                        <fields>{$ctx:fields}</fields>
+                        <feedbackId>{$ctx:feedbackId}</feedbackId>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getCampaignFeedback>
+                </case>
+                <case regex="urn:deleteCampaignFeedback">
+                    <mailchimp.deleteCampaignFeedback>
+                        <feedbackId>{$ctx:feedbackId}</feedbackId>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.deleteCampaignFeedback>
+                </case>
+                <case regex="urn:deleteCampaign">
+                    <mailchimp.deleteCampaign>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.deleteCampaign>
+                </case>
+                <case regex="urn:createCampaign">
+                    <mailchimp.createCampaign>
+                        <type>{$ctx:type}</type>
+                        <listId>{$ctx:listId}</listId>
+                        <subjectLine>{$ctx:subjectLine}</subjectLine>
+                        <fromName>{$ctx:fromName}</fromName>
+                        <replyTo>{$ctx:replyTo}</replyTo>
+                        <autoFooter>{$ctx:autoFooter}</autoFooter>
+                        <folderId>{$ctx:folderId}</folderId>
+                        <waitTime>{$ctx:waitTime}</waitTime>
+                        <testSize>{$ctx:testSize}</testSize>
+                        <winnerCriteria>{$ctx:winnerCriteria}</winnerCriteria>
+                        <opens>{$ctx:opens}</opens>
+                        <textClicks>{$ctx:textClicks}</textClicks>
+                        <description>{$ctx:description}</description>
+                        <frequency>{$ctx:frequency}</frequency>
+                        <feedUrl>{$ctx:feedUrl}</feedUrl>
+                        <salesforce>{$ctx:salesforce}</salesforce>
+                        <savedSegmentId>{$ctx:savedSegmentId}</savedSegmentId>
+                        <match>{$ctx:match}</match>
+                        <conditions>{$ctx:conditions}</conditions>
+                        <title>{$ctx:title}</title>
+                        <imageUrl>{$ctx:imageUrl}</imageUrl>
+                    </mailchimp.createCampaign>
+                </case>
+                <case regex="urn:updateCampaign">
+                    <mailchimp.updateCampaign>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <listId>{$ctx:listId}</listId>
+                        <subjectLine>{$ctx:subjectLine}</subjectLine>
+                        <fromName>{$ctx:fromName}</fromName>
+                        <replyTo>{$ctx:replyTo}</replyTo>
+                        <autoFooter>{$ctx:autoFooter}</autoFooter>
+                        <folderId>{$ctx:folderId}</folderId>
+                        <waitTime>{$ctx:waitTime}</waitTime>
+                        <testSize>{$ctx:testSize}</testSize>
+                        <winnerCriteria>{$ctx:winnerCriteria}</winnerCriteria>
+                        <opens>{$ctx:opens}</opens>
+                        <textClicks>{$ctx:textClicks}</textClicks>
+                        <description>{$ctx:description}</description>
+                        <frequency>{$ctx:frequency}</frequency>
+                        <feedUrl>{$ctx:feedUrl}</feedUrl>
+                        <salesforce>{$ctx:salesforce}</salesforce>
+                        <savedSegmentId>{$ctx:savedSegmentId}</savedSegmentId>
+                        <match>{$ctx:match}</match>
+                        <conditions>{$ctx:conditions}</conditions>
+                    </mailchimp.updateCampaign>
+                </case>
+                <case regex="urn:createList">
+                    <mailchimp.createList>
+                        <name>{$ctx:name}</name>
+                        <company>{$ctx:company}</company>
+                        <address1>{$ctx:address1}</address1>
+                        <address2>{$ctx:address2}</address2>
+                        <city>{$ctx:city}</city>
+                        <state>{$ctx:state}</state>
+                        <zip>{$ctx:zip}</zip>
+                        <country>{$ctx:country}</country>
+                        <phone>{$ctx:phone}</phone>
+                        <permissionReminder>{$ctx:permissionReminder}</permissionReminder>
+                        <useArchiveBar>{$ctx:useArchiveBar}</useArchiveBar>
+                        <fromName>{$ctx:fromName}</fromName>
+                        <fromEmail>{$ctx:fromEmail}</fromEmail>
+                        <subject>{$ctx:subject}</subject>
+                        <language>{$ctx:language}</language>
+                        <notifyOnSubscribe>{$ctx:notifyOnSubscribe}</notifyOnSubscribe>
+                        <notifyOnUnubcribe>{$ctx:notifyOnUnubcribe}</notifyOnUnubcribe>
+                        <emailTypeOption>{$ctx:emailTypeOption}</emailTypeOption>
+                        <visibility>{$ctx:visibility}</visibility>
+                    </mailchimp.createList>
+                </case>
+                <case regex="urn:getList">
+                    <mailchimp.getList>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                        <beforeCampaignLastSent>{$ctx:beforeCampaignLastSent}</beforeCampaignLastSent>
+                        <sinceCampaignLastSent>{$ctx:sinceCampaignLastSent}</sinceCampaignLastSent>
+                        <beforeDateCreated>{$ctx:beforeDateCreated}</beforeDateCreated>
+                        <sinceDateCreated>{$ctx:sinceDateCreated}</sinceDateCreated>
+                        <email>{$ctx:email}</email>
+                        <listId>{$ctx:listId}</listId>
+                    </mailchimp.getList>
+                </case>
+                <case regex="urn:listLists">
+                    <mailchimp.listLists>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                        <beforeCampaignLastSent>{$ctx:beforeCampaignLastSent}</beforeCampaignLastSent>
+                        <sinceCampaignLastSent>{$ctx:sinceCampaignLastSent}</sinceCampaignLastSent>
+                        <beforeDateCreated>{$ctx:beforeDateCreated}</beforeDateCreated>
+                        <sinceDateCreated>{$ctx:sinceDateCreated}</sinceDateCreated>
+                        <email>{$ctx:email}</email>
+                    </mailchimp.listLists>
+                </case>
+                <case regex="urn:getListActivity">
+                    <mailchimp.getListActivity>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <listId>{$ctx:listId}</listId>
+                    </mailchimp.getListActivity>
+                </case>
+                <case regex="urn:listListAbuseReports">
+                    <mailchimp.listListAbuseReports>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <listId>{$ctx:listId}</listId>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.listListAbuseReports>
+                </case>
+                <case regex="urn:deleteList">
+                    <mailchimp.deleteList>
+                        <listId>{$ctx:listId}</listId>
+                    </mailchimp.deleteList>
+                </case>
+                <case regex="urn:updateList">
+                    <mailchimp.updateList>
+                        <listId>{$ctx:listId}</listId>
+                        <name>{$ctx:name}</name>
+                        <company>{$ctx:company}</company>
+                        <address1>{$ctx:address1}</address1>
+                        <address2>{$ctx:address2}</address2>
+                        <city>{$ctx:city}</city>
+                        <state>{$ctx:state}</state>
+                        <zip>{$ctx:zip}</zip>
+                        <country>{$ctx:country}</country>
+                        <phone>{$ctx:phone}</phone>
+                        <permissionReminder>{$ctx:permissionReminder}</permissionReminder>
+                        <useArchiveBar>{$ctx:useArchiveBar}</useArchiveBar>
+                        <fromName>{$ctx:fromName}</fromName>
+                        <fromEmail>{$ctx:fromEmail}</fromEmail>
+                        <subject>{$ctx:subject}</subject>
+                        <language>{$ctx:language}</language>
+                        <notifyOnSubscribe>{$ctx:notifyOnSubscribe}</notifyOnSubscribe>
+                        <notifyOnUnubcribe>{$ctx:notifyOnUnubcribe}</notifyOnUnubcribe>
+                        <emailTypeOption>{$ctx:emailTypeOption}</emailTypeOption>
+                        <visibility>{$ctx:visibility}</visibility>
+                    </mailchimp.updateList>
+                </case>
+                <case regex="urn:subscribeOrUnsubscribeListMembers">
+                    <mailchimp.subscribeOrUnsubscribeListMembers>
+                        <listId>{$ctx:listId}</listId>
+                        <members>{$ctx:members}</members>
+                        <updateExisting>{$ctx:updateExisting}</updateExisting>
+                    </mailchimp.subscribeOrUnsubscribeListMembers>
+                </case>
+            </switch>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <log/>
+            <send/>
+        </outSequence>
+    </target>
+    <description/>
+</proxy>

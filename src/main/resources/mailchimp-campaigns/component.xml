@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<component name="mailchimp-campaigns" type="synapse/template">
+    <subComponents>
+        <component name="getCampaign">
+            <file>getCampaign.xml</file>
+            <description>Retrieve the campaign details.</description>
+        </component>
+        <component name="deleteCampaign">
+            <file>deleteCampaign.xml</file>
+            <description>Delete an existing campaign.</description>
+        </component>
+        <component name="listCampaigns">
+            <file>listCampaigns.xml</file>
+            <description>Get the list of campaigns and their details matching the specified filters</description>
+        </component>
+        <component name="createCampaign">
+            <file>createCampaign.xml</file>
+            <description>Create a new campaign.</description>
+        </component>
+        <component name="getSendCheckList">
+            <file>getSendCheckList.xml</file>
+            <description>Get the send checklist for a campaign.</description>
+        </component>
+        <component name="getCampaignContent">
+            <file>getCampaignContent.xml</file>
+            <description>Get campaign content.</description>
+        </component>
+        <component name="searchCampaign">
+            <file>searchCampaign.xml</file>
+            <description>Search Campaigns.</description>
+        </component>
+        <component name="addCampaignFeedback">
+            <file>addCampaignFeedback.xml</file>
+            <description>Add campaign feedback.</description>
+        </component>
+        <component name="listCampaignFeedback">
+            <file>listCampaignFeedback.xml</file>
+            <description>List all feedback about campaign.</description>
+        </component>
+        <component name="getCampaignFeedback">
+            <file>getCampaignFeedback.xml</file>
+            <description>Get a specific feedback message.</description>
+        </component>
+        <component name="updateCampaignFeedback">
+            <file>updateCampaignFeedback.xml</file>
+            <description>Update a campaign feedback message.</description>
+        </component>
+        <component name="deleteCampaignFeedback">
+            <file>deleteCampaignFeedback.xml</file>
+            <description>Delete a campaign feedback message.</description>
+        </component>
+        <component name="updateCampaign">
+            <file>updateCampaign.xml</file>
+            <description>Update the settings for a campaign.</description>
+        </component>
+    </subComponents>
+</component>

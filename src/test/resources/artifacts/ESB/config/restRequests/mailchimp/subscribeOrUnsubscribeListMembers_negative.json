@@ -1,0 +1,9 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listId)",
+  "members": [{"emailaddress": "testUser123@gmail1.com", "status": "cleaned"}],
+  "updateExisting": "%s(updateExisting)"
+}

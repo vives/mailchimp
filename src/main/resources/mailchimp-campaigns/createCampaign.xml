@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<template name="createCampaign" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="type" description="The campaign type."/>
+    <parameter name="listId" description="The unique id for the list."/>
+    <parameter name="savedSegmentId" description="The id for an existing saved segment."/>
+    <parameter name="match" description="The segment match type."/>
+    <parameter name="conditions" description="The condition for segment."/>
+    <parameter name="subjectLine" description="The subject line for the campaign."/>
+    <parameter name="fromName" description="The 'from' name on the campaign (not an email address)."/>
+    <parameter name="replyTo" description="The reply-to email address for the campaign."/>
+    <parameter name="campaignTitle" description="The title of the campaign."/>
+    <parameter name="useConversation"
+               description="Boolean type, use MailChimp Conversation feature to manage out-of-office replies."/>
+    <parameter name="toName" description="The campaign's custom 'To' name."/>
+    <parameter name="folderId" description="The id for that folder."/>
+    <parameter name="authenticate"
+               description="Boolean type, whether MailChimp authenticated the campaign. Defaults to true."/>
+    <parameter name="autoFooter" description="Boolean type, MailChimp’s default footer to the campaign."/>
+    <parameter name="inlineCss" description="Boolean type, CSS included with the campaign content."/>
+    <parameter name="autoTweet"
+               description="Boolean type, tweet a link to the campaign archive page when the campaign is sent."/>
+    <parameter name="autoFbPost" description="An array of Facebook page ids to auto-post."/>
+    <parameter name="fbComments"
+               description="Boolean type, allows Facebook comments on the campaign. Defaults to true."/>
+    <parameter name="winnerCriteria" description="The value of winner_criteria."/>
+    <parameter name="waitTime" description="The number of minutes to wait before choosing the winning campaign."/>
+    <parameter name="testSize"
+               description="The percentage of recipients to send the test combinations to, must be a value between 10
+               and 100."/>
+    <parameter name="subjectLinesForVariateSettings"
+               description="The possible subject lines to test. If no subject lines are provided, settings.subject_line
+               will be used."/>
+    <parameter name="sendTimes"
+               description="The possible send times to test. The times provided should be in the format
+               YYYY-MM-DD HH:MM:SS"/>
+    <parameter name="fromNames" description="The possible from names."/>
+    <parameter name="replyToAddresses" description="The possible reply-to addresses."/>
+    <parameter name="opens" description="Boolean type, whether to track opens. Defaults to true."/>
+    <parameter name="htmlClicks"
+               description="Boolean type, whether to track clicks in the HTML version of the campaign.
+               Defaults to true. "/>
+    <parameter name="textClicks"
+               description="Boolean type, whether to track clicks in the plain-text version of the campaign.
+               Defaults to true. "/>
+    <parameter name="goalTracking" description="Boolean type, whether to enable Goal tracking."/>
+    <parameter name="ecomm360" description="Boolean type, whether to enable eCommerce360 tracking."/>
+    <parameter name="googleAnalytics" description="The custom slug for Google Analytics tracking (max of 50 bytes)."/>
+    <parameter name="clickTale" description="The custom slug for ClickTale tracking (max of 50 bytes)."/>
+    <parameter name="salesforce" description="Salesforce tracking options for a campaign."/>
+    <parameter name="highRise" description="Highrise tracking options for a campaign."/>
+    <parameter name="capsule" description="Capsule tracking options for a campaign."/>
+    <parameter name="feedUrl" description="The URL for the RSS feed."/>
+    <parameter name="frequency" description="The frequency of the RSS Campaign."/>
+    <parameter name="schedule" description="The schedule for sending the RSS Campaign."/>
+    <parameter name="constrainRssImg"
+               description="Boolean type, whether to add CSS to images in the RSS feed to constrain their width in
+               campaigns."/>
+    <parameter name="imageUrl" description="The url for the header image for the card."/>
+    <parameter name="description" description="A short summary of the campaign to display."/>
+    <parameter name="title" description="The title for the card."/>
+    <sequence>
+        <property name="uri.var.type" expression="$func:type"/>
+        <property name="uri.var.listId" expression="$func:listId"/>
+        <property name="uri.var.savedSegmentId" expression="$func:savedSegmentId"/>
+        <property name="uri.var.match" expression="$func:match"/>
+        <property name="uri.var.conditions" expression="$func:conditions"/>
+        <property name="uri.var.subjectLine" expression="$func:subjectLine"/>
+        <property name="uri.var.fromName" expression="$func:fromName"/>
+        <property name="uri.var.replyTo" expression="$func:replyTo"/>
+        <property name="uri.var.useConversation" expression="$func:useConversation"/>
+        <property name="uri.var.toName" expression="$func:toName"/>
+        <property name="uri.var.folderId" expression="$func:folderId"/>
+        <property name="uri.var.authenticate" expression="$func:authenticate"/>
+        <property name="uri.var.autoFooter" expression="$func:autoFooter"/>
+        <property name="uri.var.inlineCss" expression="$func:inlineCss"/>
+        <property name="uri.var.autoTweet" expression="$func:autoTweet"/>
+        <property name="uri.var.autoFbPost" expression="$func:autoFbPost"/>
+        <property name="uri.var.fbComments" expression="$func:fbComments"/>
+        <property name="uri.var.winnerCriteria" expression="$func:winnerCriteria"/>
+        <property name="uri.var.waitTime" expression="$func:waitTime"/>
+        <property name="uri.var.testSize" expression="$func:testSize"/>
+        <property name="uri.var.subjectLinesForVariateSettings" expression="$func:subjectLinesForVariateSettings"/>
+        <property name="uri.var.sendTimes" expression="$func:sendTimes"/>
+        <property name="uri.var.fromNames" expression="$func:fromNames"/>
+        <property name="uri.var.replyToAddresses" expression="$func:replyToAddresses"/>
+        <property name="uri.var.opens" expression="$func:opens"/>
+        <property name="uri.var.htmlClicks" expression="$func:htmlClicks"/>
+        <property name="uri.var.textClicks" expression="$func:textClicks"/>
+        <property name="uri.var.goalTracking" expression="$func:goalTracking"/>
+        <property name="uri.var.ecomm360" expression="$func:ecomm360"/>
+        <property name="uri.var.googleAnalytics" expression="$func:googleAnalytics"/>
+        <property name="uri.var.clickTale" expression="$func:clickTale"/>
+        <property name="uri.var.salesforce" expression="$func:salesforce"/>
+        <property name="uri.var.highRise" expression="$func:highRise"/>
+        <property name="uri.var.capsule" expression="$func:capsule"/>
+        <property name="uri.var.feedUrl" expression="$func:feedUrl"/>
+        <property name="uri.var.frequency" expression="$func:frequency"/>
+        <property name="uri.var.schedule" expression="$func:schedule"/>
+        <property name="uri.var.constrainRssImg" expression="$func:constrainRssImg"/>
+        <property name="uri.var.imageUrl" expression="$func:imageUrl"/>
+        <property name="uri.var.description" expression="$func:description"/>
+        <property name="uri.var.title" expression="$func:title"/>
+        <property name="uri.var.campaignTitle" expression="$func:campaignTitle"/>
+        <script language="js">
+            <![CDATA[
+                var listId = mc.getProperty('uri.var.listId');
+                var type = mc.getProperty('uri.var.type');
+                var segmentOpts = mc.getProperty('uri.var.segmentOpts');
+                var type = mc.getProperty('uri.var.type');
+                var fromName = mc.getProperty('uri.var.fromName');
+                var subjectLine = mc.getProperty('uri.var.subjectLine');
+                var replyTo = mc.getProperty('uri.var.replyTo');
+                var campaignTitle = mc.getProperty('uri.var.campaignTitle');
+                var useConversation = mc.getProperty('uri.var.useConversation');
+                var toName = mc.getProperty('uri.var.toName');
+                var folderId = mc.getProperty('uri.var.folderId');
+                var authenticate = mc.getProperty('uri.var.authenticate');
+                var autoFooter = mc.getProperty('uri.var.autoFooter');
+                var inlineCss = mc.getProperty('uri.var.inlineCss');
+                var autoTweet = mc.getProperty('uri.var.autoTweet');
+                var autoFbPost = mc.getProperty('uri.var.autoFbPost');
+                var fbComments = mc.getProperty('uri.var.fbComments');
+                var winnerCriteria = mc.getProperty('uri.var.winnerCriteria');
+                var waitTime = mc.getProperty('uri.var.waitTime');
+                var testSize = mc.getProperty('uri.var.testSize');
+                var subjectLinesForVariateSettings = mc.getProperty('uri.var.subjectLinesForVariateSettings');
+                var sendTimes = mc.getProperty('uri.var.sendTimes');
+                var fromNames = mc.getProperty('uri.var.fromNames');
+                var replyToAddresses = mc.getProperty('uri.var.replyToAddresses');
+                var opens = mc.getProperty('uri.var.opens');
+                var htmlClicks = mc.getProperty('uri.var.htmlClicks');
+                var textClicks = mc.getProperty('uri.var.textClicks');
+                var goalTracking = mc.getProperty('uri.var.goalTracking');
+                var ecomm360 = mc.getProperty('uri.var.ecomm360');
+                var googleAnalytics = mc.getProperty('uri.var.googleAnalytics');
+                var clickTale = mc.getProperty('uri.var.clickTale');
+                var salesforce = mc.getProperty('uri.var.salesforce');
+                var highRise = mc.getProperty('uri.var.highRise');
+                var capsule = mc.getProperty('uri.var.capsule');
+                var imageUrl = mc.getProperty('uri.var.imageUrl');
+                var description = mc.getProperty('uri.var.description');
+                var title = mc.getProperty('uri.var.title');
+                var feedUrl = mc.getProperty('uri.var.feedUrl');
+                var frequency = mc.getProperty('uri.var.frequency');
+                var schedule = mc.getProperty('uri.var.schedule');
+                var constrainRssImg = mc.getProperty('uri.var.constrainRssImg');
+                var savedSegmentId = mc.getProperty('uri.var.savedSegmentId');
+                var match = mc.getProperty('uri.var.match');
+                var conditions = mc.getProperty('uri.var.conditions');
+                var query = '{';
+
+                query = query.concat('"recipients":{' + '"list_id":"' + listId +'",');
+                var segmentOptsParameter = '';
+
+                if (savedSegmentId != null && savedSegmentId != "" ){
+                    segmentOptsParameter = segmentOptsParameter.concat('"saved_segment_id":' + savedSegmentId + ',');
+                }
+                if (match != null && match != "" ){
+                    segmentOptsParameter = segmentOptsParameter.concat('"match":"' + match + '",');
+                }
+                if (conditions != null && conditions != "" && conditions != "[]"){
+                    var conditions = eval( "('" + conditions + "')" );
+                    segmentOptsParameter = segmentOptsParameter.concat('"conditions":' + conditions + ',');
+                }
+                if(segmentOptsParameter != null && segmentOptsParameter != ""){
+                   segmentOptsParameter = segmentOptsParameter.substring(0, segmentOptsParameter.length-1);
+                   query = query.concat('"segment_opts":{');
+                   query = query.concat(segmentOptsParameter);
+                   query = query.concat('}');
+                }else{
+                   query = query.substring(0, query.length-1);
+                }
+                query = query.concat('},');
+                query = query.concat('"type":"' + type +'",');
+                query = query.concat('"settings":{' + '"subject_line":"' + subjectLine + '"');
+                query = query.concat(',"from_name":"' + fromName + '"');
+                query = query.concat(',"reply_to":"' + replyTo + '"');
+                if (campaignTitle != null && campaignTitle != ""){
+                    query = query.concat(',"title":"' + campaignTitle +'"');
+                }
+                if (useConversation != null && useConversation != ""){
+                    query = query.concat(',"use_conversation":' + useConversation);
+                }
+                if (toName != null && toName != ""){
+                    query = query.concat(',"to_name":"' + toName + '"');
+                }
+                if (folderId != null && folderId != ""){
+                    query = query.concat(',"folder_id":"' + folderId + '"');
+                }
+                if (authenticate != null && authenticate != ""){
+                    query = query.concat(',"authenticate":' + authenticate);
+                }
+                if (autoFooter != null && autoFooter != ""){
+                    query = query.concat(',"auto_footer":' + autoFooter);
+                }
+                if (inlineCss != null && inlineCss != ""){
+                    query = query.concat(',"inline_css":' + inlineCss);
+                }
+                if (autoTweet != null && autoTweet != ""){
+                    query = query.concat(',"auto_tweet":' + autoTweet);
+                }
+                if (fbComments != null && fbComments != ""){
+                    query = query.concat(',"fb_comments":' + fbComments);
+                }
+                if (autoFbPost != null && autoFbPost != "" && autoFbPost != "[]"){
+                    var autoFbPost = eval( "('" + autoFbPost + "')" );
+                    query = query.concat(',"auto_fb_post":' + autoFbPost);
+                }
+                query = query.concat('},');
+                if (winnerCriteria != null && winnerCriteria != ""){
+                    query = query.concat('"variate_settings":{' + '"winner_criteria":"' + winnerCriteria +'"');
+                    if (waitTime != null && waitTime != ""){
+                        query = query.concat(',"wait_time":' + waitTime);
+                    }
+                    if (testSize != null && testSize != ""){
+                        query = query.concat(',"test_size":' + testSize);
+                    }
+                    if (subjectLinesForVariateSettings != null && subjectLinesForVariateSettings != "" && subjectLinesForVariateSettings != "[]"){
+                        var subjectLinesForVariateSettings = eval( "('" + subjectLinesForVariateSettings + "')" );
+                        query = query.concat(',"subject_lines":' + subjectLinesForVariateSettings);
+                    }
+                    if (sendTimes != null && sendTimes != "" && sendTimes != "[]"){
+                        var sendTimes = eval( "('" + sendTimes + "')" );
+                        query = query.concat(',"send_times":' + sendTimes);
+                    }
+                    if (fromNames != null && fromNames != "" && fromNames != "[]"){
+                        var fromNames = eval( "('" + fromNames + "')" );
+                        query = query.concat(',"from_names":' + fromNames);
+                    }
+                    if (replyToAddresses != null && replyToAddresses != "" && replyToAddresses != "[]"){
+                        var replyToAddresses = eval( "('" + replyToAddresses + "')" );
+                        query = query.concat(',"reply_to_addresses":' + replyToAddresses);
+                    }
+                    query = query.concat('},');
+                }
+                var trackingParameter = '';
+                if (opens != null && opens != ""){
+                    trackingParameter = trackingParameter.concat('"opens":' + opens + ',');
+                }
+                if (htmlClicks != null && htmlClicks != ""){
+                    trackingParameter = trackingParameter.concat('"html_clicks":' + htmlClicks + ',');
+                }
+                if (textClicks != null && textClicks != ""){
+                    trackingParameter = trackingParameter.concat('"text_clicks":' + textClicks + ',');
+                }
+                if (goalTracking != null && goalTracking != ""){
+                    trackingParameter = trackingParameter.concat('"goal_tracking":' + goalTracking + ',');
+                }
+                if (ecomm360 != null && ecomm360 != ""){
+                    trackingParameter = trackingParameter.concat('"ecomm360":' + ecomm360 + ',');
+                }
+                if (googleAnalytics != null && googleAnalytics != ""){
+                    trackingParameter = trackingParameter.concat('"google_analytics":"' + googleAnalytics + '",');
+                }
+                if (clickTale != null && clickTale != ""){
+                    trackingParameter = trackingParameter.concat('"clicktale":"' + clickTale + '",');
+                }
+                if (salesforce != null && salesforce != "" && salesforce != "{}"){
+                    var salesforce = eval( "('" + salesforce + "')" );
+                    trackingParameter = trackingParameter.concat('"salesforce":' + salesforce + ',');
+                }
+                if (highRise != null && highRise != "" && highRise != "{}"){
+                    var highRise = eval( "('" + highRise + "')" );
+                    trackingParameter = trackingParameter.concat('"highrise":' + highRise + ',');
+                }
+                if (capsule != null && capsule != "" && capsule != "{}"){
+                    var capsule = eval( "('" + capsule + "')" );
+                    trackingParameter = trackingParameter.concat('"capsule":' + capsule + ',');
+                }
+                if(trackingParameter != null && trackingParameter != ""){
+                   trackingParameter = trackingParameter.substring(0, trackingParameter.length-1);
+                   query = query.concat('"tracking":{');
+                   query = query.concat(trackingParameter);
+                   query = query.concat('},');
+                }
+                var socialCardParameter = '';
+                if (imageUrl != null && imageUrl != ""){
+                    socialCardParameter = socialCardParameter.concat('"image_url":"' + imageUrl + '",');
+                }
+                if (description != null && description != ""){
+                    socialCardParameter = socialCardParameter.concat('"description":"' + description + '",');
+                }
+                if (title != null && title != ""){
+                    socialCardParameter = socialCardParameter.concat('"title":"' + title + '",');
+                }
+                if(socialCardParameter != null && socialCardParameter != ""){
+                   socialCardParameter = socialCardParameter.substring(0, socialCardParameter.length-1);
+                   query = query.concat('"social_card":{');
+                   query = query.concat(socialCardParameter);
+                   query = query.concat('},');
+                }
+                var rssOptsParameter = '';
+                if (feedUrl != null && feedUrl != ""){
+                    rssOptsParameter = rssOptsParameter.concat('"feed_url":"' + feedUrl + '",');
+                }
+                if (frequency != null && frequency != ""){
+                    rssOptsParameter = rssOptsParameter.concat('"frequency":"' + frequency + '",');
+                }
+                if (schedule != null && schedule != "" && schedule != "[]"){
+                    var schedule = eval( "('" + schedule + "')" );
+                    rssOptsParameter = rssOptsParameter.concat('"schedule":' + schedule);
+                }
+                 if (constrainRssImg != null && constrainRssImg != ""){
+                    rssOptsParameter = rssOptsParameter.concat('"constrain_rss_img":' + constrainRssImg);
+                }
+                if(rssOptsParameter != null && rssOptsParameter != ""){
+                   rssOptsParameter = rssOptsParameter.substring(0, rssOptsParameter.length-1);
+                   query = query.concat('"rss_opts":{');
+                   query = query.concat(rssOptsParameter);
+                   query = query.concat('},');
+                }
+                query = query.substring(0, query.length-1);
+                mc.setProperty('uri.var.query', query);
+        ]]>
+        </script>
+        <payloadFactory media-type="json">
+            <format>
+                $1
+                }
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.query"/>
+            </args>
+        </payloadFactory>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <filter source="$ctx:mailchimpBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="POST" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns"/>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="POST" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/campaigns"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+    </sequence>
+</template>

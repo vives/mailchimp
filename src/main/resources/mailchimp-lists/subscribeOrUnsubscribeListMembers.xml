@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+~  Copyright (c) 2016, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+~
+~  WSO2 Inc. licenses this file to you under the Apache License,
+~  Version 2.0 (the "License"); you may not use this file except
+~  in compliance with the License.
+~  You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~  Unless required by applicable law or agreed to in writing,
+~  software distributed under the License is distributed on an
+~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~  KIND, either express or implied.  See the License for the
+~  specific language governing permissions and limitations
+~  under the License.
+-->
+<template name="subscribeOrUnsubscribeListMembers" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="listId" description="The unique id for the list."/>
+    <parameter name="members"
+               description="An array of objects, each representing an email address and the subscription status for
+               a specific list."/>
+    <parameter name="updateExisting"
+               description="Boolean type, whether this batch operation will change existing members subscription
+               status."/>
+    <sequence>
+        <property name="uri.var.listId" expression="$func:listId"/>
+        <property name="uri.var.members" expression="$func:members"/>
+        <property name="uri.var.updateExisting" expression="$func:updateExisting"/>
+
+        <filter source="boolean($ctx:uri.var.updateExisting)" regex="true">
+            <then>
+                <property name="uri.var.updateExisting" expression="$func:updateExisting"/>
+            </then>
+            <else>
+                <property name="uri.var.updateExisting" value="false"/>
+            </else>
+        </filter>
+        <payloadFactory media-type="json">
+            <format>
+                {
+                "members":$1,
+                "update_existing":$2
+                }
+            </format>
+            <args>
+                <arg expression="$ctx:uri.var.members"/>
+                <arg expression="$ctx:uri.var.updateExisting"/>
+            </args>
+        </payloadFactory>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
+        <property name="DISABLE_CHUNKING" value="true" scope="axis2"/>
+        <filter source="$ctx:mailchimpBlocking" regex="true">
+            <then>
+                <call blocking="true">
+                    <endpoint>
+                        <http method="POST" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/lists/{uri.var.listId}"/>
+                    </endpoint>
+                </call>
+            </then>
+            <else>
+                <call>
+                    <endpoint>
+                        <http method="POST" uri-template="{uri.var.apiUrl}/{uri.var.apiVersion}/lists/{uri.var.listId}"/>
+                    </endpoint>
+                </call>
+            </else>
+        </filter>
+    </sequence>
+</template>
