@@ -1,0 +1,15 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listId)",
+  "subjectLine": "%s(subjectLineOpt)",
+  "fromName": "%s(campaignFromName)",
+  "replyTo": "%s(replyTo)",
+  "type": "%s(type)",
+  "autoFooter": true,
+  "testSize": 20,
+  "opens": true,
+  "toName" : "John"
+}

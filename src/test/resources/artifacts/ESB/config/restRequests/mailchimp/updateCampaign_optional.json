@@ -1,0 +1,15 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listIdOpt)",
+  "campaignId": "%s(campaignIdOpt)",
+  "subjectLine": "%s(newSubjectLineOpt)",
+  "fromName": "%s(campaignFromName)",
+  "replyTo": "%s(replyTo)",
+  "type": "%s(type)",
+  "autoFooter": false,
+  "opens": false,
+  "toName" : "Miller"
+}

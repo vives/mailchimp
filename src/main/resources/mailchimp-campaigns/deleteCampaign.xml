@@ -20,6 +20,7 @@
     <parameter name="campaignId" description="The unique id for the campaign to delete."/>
     <sequence>
         <property name="uri.var.campaignId" expression="$func:campaignId"/>
+        <property name="Accept-Encoding" scope="transport" action="remove"/>
         <filter source="$ctx:mailchimpBlocking" regex="true">
             <then>
                 <call blocking="true">

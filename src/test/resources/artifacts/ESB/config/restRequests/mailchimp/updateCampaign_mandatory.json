@@ -1,0 +1,12 @@
+{
+  "apiUrl": "%s(apiUrl)",
+  "apiVersion": "%s(apiVersion)",
+  "accessToken": "%s(accessToken)",
+  "blocking": "%s(blocking)",
+  "listId": "%s(listId)",
+  "campaignId": "%s(campaignId)",
+  "subjectLine": "%s(newSubjectLine)",
+  "fromName": "%s(campaignFromName)",
+  "replyTo": "%s(replyTo)",
+  "type": "%s(type)"
+}

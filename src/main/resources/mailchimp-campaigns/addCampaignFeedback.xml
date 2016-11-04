@@ -26,27 +26,34 @@
         <property name="uri.var.message" expression="$func:message"/>
         <property name="uri.var.isComplete" expression="$func:isComplete"/>
         <property name="uri.var.campaignId" expression="$func:campaignId"/>
+
+        <filter source="boolean($ctx:uri.var.isComplete)" regex="true">
+            <then>
+                <property name="uri.var.isComplete" expression="$func:isComplete"/>
+            </then>
+            <else>
+                <property name="uri.var.isComplete" value="false"/>
+            </else>
+        </filter>
         <payloadFactory media-type="json">
             <format>
                 {
-                "message":"$1"
+                "message":"$1",
+                "is_complete":$2
                 }
             </format>
             <args>
                 <arg expression="$ctx:uri.var.message"/>
+                <arg expression="$ctx:uri.var.isComplete"/>
             </args>
         </payloadFactory>
         <script language="js">
             <![CDATA[
             var blockId = mc.getProperty('uri.var.blockId');
-            var isComplete = mc.getProperty('uri.var.isComplete');
             var payload = mc.getPayloadJSON();
 
             if (blockId != null && blockId != ""){
                 payload.block_id = parseInt(blockId)
-            }
-            if (isComplete != null && isComplete != ""){
-                payload.is_complete = isComplete
             }
             mc.setPayloadJSON(payload);
          ]]>

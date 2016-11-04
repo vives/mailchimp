@@ -94,6 +94,7 @@
             <property expression="json-eval($.imageUrl)" name="imageUrl"/>
             <property expression="json-eval($.members)" name="members"/>
             <property expression="json-eval($.updateExisting)" name="updateExisting"/>
+            <property expression="json-eval($.toName)" name="toName"/>
             <mailchimp.init>
                 <apiUrl>{$ctx:apiUrl}</apiUrl>
                 <apiVersion>{$ctx:apiVersion}</apiVersion>
@@ -199,6 +200,7 @@
                         <fromName>{$ctx:fromName}</fromName>
                         <replyTo>{$ctx:replyTo}</replyTo>
                         <autoFooter>{$ctx:autoFooter}</autoFooter>
+                        <toName>{$ctx:toName}</toName>
                         <folderId>{$ctx:folderId}</folderId>
                         <waitTime>{$ctx:waitTime}</waitTime>
                         <testSize>{$ctx:testSize}</testSize>
@@ -223,6 +225,7 @@
                         <subjectLine>{$ctx:subjectLine}</subjectLine>
                         <fromName>{$ctx:fromName}</fromName>
                         <replyTo>{$ctx:replyTo}</replyTo>
+                        <toName>{$ctx:toName}</toName>
                         <autoFooter>{$ctx:autoFooter}</autoFooter>
                         <folderId>{$ctx:folderId}</folderId>
                         <waitTime>{$ctx:waitTime}</waitTime>
