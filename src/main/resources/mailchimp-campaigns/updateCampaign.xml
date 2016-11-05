@@ -77,92 +77,92 @@
     <parameter name="title" description="The title for the card."/>
     <sequence>
         <property name="uri.var.campaignId" expression="$func:campaignId"/>
-        <property name="uri.var.listId" expression="$func:listId"/>
-        <property name="uri.var.savedSegmentId" expression="$func:savedSegmentId"/>
-        <property name="uri.var.match" expression="$func:match"/>
-        <property name="uri.var.conditions" expression="$func:conditions"/>
-        <property name="uri.var.subjectLine" expression="$func:subjectLine"/>
-        <property name="uri.var.fromName" expression="$func:fromName"/>
-        <property name="uri.var.replyTo" expression="$func:replyTo"/>
-        <property name="uri.var.useConversation" expression="$func:useConversation"/>
-        <property name="uri.var.toName" expression="$func:toName"/>
-        <property name="uri.var.folderId" expression="$func:folderId"/>
-        <property name="uri.var.authenticate" expression="$func:authenticate"/>
-        <property name="uri.var.autoFooter" expression="$func:autoFooter"/>
-        <property name="uri.var.inlineCss" expression="$func:inlineCss"/>
-        <property name="uri.var.autoTweet" expression="$func:autoTweet"/>
-        <property name="uri.var.autoFbPost" expression="$func:autoFbPost"/>
-        <property name="uri.var.fbComments" expression="$func:fbComments"/>
-        <property name="uri.var.winnerCriteria" expression="$func:winnerCriteria"/>
-        <property name="uri.var.waitTime" expression="$func:waitTime"/>
-        <property name="uri.var.testSize" expression="$func:testSize"/>
-        <property name="uri.var.subjectLinesForVariateSettings" expression="$func:subjectLinesForVariateSettings"/>
-        <property name="uri.var.sendTimes" expression="$func:sendTimes"/>
-        <property name="uri.var.fromNames" expression="$func:fromNames"/>
-        <property name="uri.var.replyToAddresses" expression="$func:replyToAddresses"/>
-        <property name="uri.var.opens" expression="$func:opens"/>
-        <property name="uri.var.htmlClicks" expression="$func:htmlClicks"/>
-        <property name="uri.var.textClicks" expression="$func:textClicks"/>
-        <property name="uri.var.goalTracking" expression="$func:goalTracking"/>
-        <property name="uri.var.ecomm360" expression="$func:ecomm360"/>
-        <property name="uri.var.googleAnalytics" expression="$func:googleAnalytics"/>
-        <property name="uri.var.clickTale" expression="$func:clickTale"/>
-        <property name="uri.var.salesforce" expression="$func:salesforce"/>
-        <property name="uri.var.highRise" expression="$func:highRise"/>
-        <property name="uri.var.capsule" expression="$func:capsule"/>
-        <property name="uri.var.feedUrl" expression="$func:feedUrl"/>
-        <property name="uri.var.frequency" expression="$func:frequency"/>
-        <property name="uri.var.schedule" expression="$func:schedule"/>
-        <property name="uri.var.constrainRssImg" expression="$func:constrainRssImg"/>
-        <property name="uri.var.imageUrl" expression="$func:imageUrl"/>
-        <property name="uri.var.description" expression="$func:description"/>
-        <property name="uri.var.title" expression="$func:title"/>
-        <property name="uri.var.campaignTitle" expression="$func:campaignTitle"/>
+        <property name="listId" expression="$func:listId"/>
+        <property name="savedSegmentId" expression="$func:savedSegmentId"/>
+        <property name="match" expression="$func:match"/>
+        <property name="conditions" expression="$func:conditions"/>
+        <property name="subjectLine" expression="$func:subjectLine"/>
+        <property name="fromName" expression="$func:fromName"/>
+        <property name="replyTo" expression="$func:replyTo"/>
+        <property name="useConversation" expression="$func:useConversation"/>
+        <property name="toName" expression="$func:toName"/>
+        <property name="folderId" expression="$func:folderId"/>
+        <property name="authenticate" expression="$func:authenticate"/>
+        <property name="autoFooter" expression="$func:autoFooter"/>
+        <property name="inlineCss" expression="$func:inlineCss"/>
+        <property name="autoTweet" expression="$func:autoTweet"/>
+        <property name="autoFbPost" expression="$func:autoFbPost"/>
+        <property name="fbComments" expression="$func:fbComments"/>
+        <property name="winnerCriteria" expression="$func:winnerCriteria"/>
+        <property name="waitTime" expression="$func:waitTime"/>
+        <property name="testSize" expression="$func:testSize"/>
+        <property name="subjectLinesForVariateSettings" expression="$func:subjectLinesForVariateSettings"/>
+        <property name="sendTimes" expression="$func:sendTimes"/>
+        <property name="fromNames" expression="$func:fromNames"/>
+        <property name="replyToAddresses" expression="$func:replyToAddresses"/>
+        <property name="opens" expression="$func:opens"/>
+        <property name="htmlClicks" expression="$func:htmlClicks"/>
+        <property name="textClicks" expression="$func:textClicks"/>
+        <property name="goalTracking" expression="$func:goalTracking"/>
+        <property name="ecomm360" expression="$func:ecomm360"/>
+        <property name="googleAnalytics" expression="$func:googleAnalytics"/>
+        <property name="clickTale" expression="$func:clickTale"/>
+        <property name="salesforce" expression="$func:salesforce"/>
+        <property name="highRise" expression="$func:highRise"/>
+        <property name="capsule" expression="$func:capsule"/>
+        <property name="feedUrl" expression="$func:feedUrl"/>
+        <property name="frequency" expression="$func:frequency"/>
+        <property name="schedule" expression="$func:schedule"/>
+        <property name="constrainRssImg" expression="$func:constrainRssImg"/>
+        <property name="imageUrl" expression="$func:imageUrl"/>
+        <property name="description" expression="$func:description"/>
+        <property name="title" expression="$func:title"/>
+        <property name="campaignTitle" expression="$func:campaignTitle"/>
         <script language="js">
             <![CDATA[
-                var listId = mc.getProperty('uri.var.listId');
-                var segmentOpts = mc.getProperty('uri.var.segmentOpts');
-                var type = mc.getProperty('uri.var.type');
-                var fromName = mc.getProperty('uri.var.fromName');
-                var subjectLine = mc.getProperty('uri.var.subjectLine');
-                var replyTo = mc.getProperty('uri.var.replyTo');
-                var campaignTitle = mc.getProperty('uri.var.campaignTitle');
-                var useConversation = mc.getProperty('uri.var.useConversation');
-                var toName = mc.getProperty('uri.var.toName');
-                var folderId = mc.getProperty('uri.var.folderId');
-                var authenticate = mc.getProperty('uri.var.authenticate');
-                var autoFooter = mc.getProperty('uri.var.autoFooter');
-                var inlineCss = mc.getProperty('uri.var.inlineCss');
-                var autoTweet = mc.getProperty('uri.var.autoTweet');
-                var autoFbPost = mc.getProperty('uri.var.autoFbPost');
-                var fbComments = mc.getProperty('uri.var.fbComments');
-                var winnerCriteria = mc.getProperty('uri.var.winnerCriteria');
-                var waitTime = mc.getProperty('uri.var.waitTime');
-                var testSize = mc.getProperty('uri.var.testSize');
-                var subjectLinesForVariateSettings = mc.getProperty('uri.var.subjectLinesForVariateSettings');
-                var sendTimes = mc.getProperty('uri.var.sendTimes');
-                var fromNames = mc.getProperty('uri.var.fromNames');
-                var replyToAddresses = mc.getProperty('uri.var.replyToAddresses');
-                var opens = mc.getProperty('uri.var.opens');
-                var htmlClicks = mc.getProperty('uri.var.htmlClicks');
-                var textClicks = mc.getProperty('uri.var.textClicks');
-                var goalTracking = mc.getProperty('uri.var.goalTracking');
-                var ecomm360 = mc.getProperty('uri.var.ecomm360');
-                var googleAnalytics = mc.getProperty('uri.var.googleAnalytics');
-                var clickTale = mc.getProperty('uri.var.clickTale');
-                var salesforce = mc.getProperty('uri.var.salesforce');
-                var highRise = mc.getProperty('uri.var.highRise');
-                var capsule = mc.getProperty('uri.var.capsule');
-                var imageUrl = mc.getProperty('uri.var.imageUrl');
-                var description = mc.getProperty('uri.var.description');
-                var title = mc.getProperty('uri.var.title');
-                var feedUrl = mc.getProperty('uri.var.feedUrl');
-                var frequency = mc.getProperty('uri.var.frequency');
-                var schedule = mc.getProperty('uri.var.schedule');
-                var constrainRssImg = mc.getProperty('uri.var.constrainRssImg');
-                var savedSegmentId = mc.getProperty('uri.var.savedSegmentId');
-                var match = mc.getProperty('uri.var.match');
-                var conditions = mc.getProperty('uri.var.conditions');
+                var listId = mc.getProperty('listId');
+                var segmentOpts = mc.getProperty('segmentOpts');
+                var type = mc.getProperty('type');
+                var fromName = mc.getProperty('fromName');
+                var subjectLine = mc.getProperty('subjectLine');
+                var replyTo = mc.getProperty('replyTo');
+                var campaignTitle = mc.getProperty('campaignTitle');
+                var useConversation = mc.getProperty('useConversation');
+                var toName = mc.getProperty('toName');
+                var folderId = mc.getProperty('folderId');
+                var authenticate = mc.getProperty('authenticate');
+                var autoFooter = mc.getProperty('autoFooter');
+                var inlineCss = mc.getProperty('inlineCss');
+                var autoTweet = mc.getProperty('autoTweet');
+                var autoFbPost = mc.getProperty('autoFbPost');
+                var fbComments = mc.getProperty('fbComments');
+                var winnerCriteria = mc.getProperty('winnerCriteria');
+                var waitTime = mc.getProperty('waitTime');
+                var testSize = mc.getProperty('testSize');
+                var subjectLinesForVariateSettings = mc.getProperty('subjectLinesForVariateSettings');
+                var sendTimes = mc.getProperty('sendTimes');
+                var fromNames = mc.getProperty('fromNames');
+                var replyToAddresses = mc.getProperty('replyToAddresses');
+                var opens = mc.getProperty('opens');
+                var htmlClicks = mc.getProperty('htmlClicks');
+                var textClicks = mc.getProperty('textClicks');
+                var goalTracking = mc.getProperty('goalTracking');
+                var ecomm360 = mc.getProperty('ecomm360');
+                var googleAnalytics = mc.getProperty('googleAnalytics');
+                var clickTale = mc.getProperty('clickTale');
+                var salesforce = mc.getProperty('salesforce');
+                var highRise = mc.getProperty('highRise');
+                var capsule = mc.getProperty('capsule');
+                var imageUrl = mc.getProperty('imageUrl');
+                var description = mc.getProperty('description');
+                var title = mc.getProperty('title');
+                var feedUrl = mc.getProperty('feedUrl');
+                var frequency = mc.getProperty('frequency');
+                var schedule = mc.getProperty('schedule');
+                var constrainRssImg = mc.getProperty('constrainRssImg');
+                var savedSegmentId = mc.getProperty('savedSegmentId');
+                var match = mc.getProperty('match');
+                var conditions = mc.getProperty('conditions');
                 var query = '{';
 
                 query = query.concat('"recipients":{' + '"list_id":"' + listId +'",');
@@ -325,7 +325,7 @@
                    query = query.concat('},');
                 }
                 query = query.substring(0, query.length-1);
-                mc.setProperty('uri.var.query', query);
+                mc.setProperty('query', query);
         ]]>
         </script>
         <payloadFactory media-type="json">
@@ -334,7 +334,7 @@
                 }
             </format>
             <args>
-                <arg expression="$ctx:uri.var.query"/>
+                <arg expression="$ctx:query"/>
             </args>
         </payloadFactory>
         <property name="messageType" value="application/json" scope="axis2"/>

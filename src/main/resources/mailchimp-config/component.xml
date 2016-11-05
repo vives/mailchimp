@@ -22,9 +22,5 @@
             <file>init.xml</file>
             <description>Init operation.</description>
         </component>
-        <component name="getAccessTokenFromAuthorizationCode">
-            <file>getAccessTokenFromAuthorizationCode.xml</file>
-            <description>Get an accessToken from the code.</description>
-        </component>
     </subComponents>
 </component>

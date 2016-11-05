@@ -26,15 +26,14 @@
                status."/>
     <sequence>
         <property name="uri.var.listId" expression="$func:listId"/>
-        <property name="uri.var.members" expression="$func:members"/>
-        <property name="uri.var.updateExisting" expression="$func:updateExisting"/>
+        <property name="updateExisting" expression="$func:updateExisting"/>
 
-        <filter source="boolean($ctx:uri.var.updateExisting)" regex="true">
+        <filter source="boolean($ctx:updateExisting)" regex="true">
             <then>
-                <property name="uri.var.updateExisting" expression="$func:updateExisting"/>
+                <property name="updateExisting" expression="$func:updateExisting"/>
             </then>
             <else>
-                <property name="uri.var.updateExisting" value="false"/>
+                <property name="updateExisting" value="false"/>
             </else>
         </filter>
         <payloadFactory media-type="json">
@@ -45,8 +44,8 @@
                 }
             </format>
             <args>
-                <arg expression="$ctx:uri.var.members"/>
-                <arg expression="$ctx:uri.var.updateExisting"/>
+                <arg expression="$func:members"/>
+                <arg expression="$ctx:updateExisting"/>
             </args>
         </payloadFactory>
         <property name="messageType" value="application/json" scope="axis2"/>

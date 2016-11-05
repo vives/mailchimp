@@ -232,7 +232,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	     * @throws JSONException
 	     * @throws IOException
 	     */
-	    @Test(enabled = true, dependsOnMethods = {"testCreateListWithMandatoryParameters","testListListAbuseReportsWithOptionalParameters"},
+	    @Test(enabled = true, dependsOnMethods = {"testCreateListWithMandatoryParameters",
+	                                              "testListListAbuseReportsWithOptionalParameters"},
 	            description = "mailchimp {getList} integration test with mandatory parameters.")
 	    public void testGetListWithMandatoryParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getList");
@@ -287,7 +288,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getList_negative.json");
 
 
-	        Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+	        Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be" +
+	                                                                           " found.");
 	        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
 	    }
 
@@ -321,7 +323,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	     * @throws JSONException
 	     * @throws IOException
 	     */
-	    @Test(enabled = true, dependsOnMethods = {"testCreateListWithMandatoryParameters","testGetListActivityWithMandatoryParameters"},
+	    @Test(enabled = true, dependsOnMethods = {"testCreateListWithMandatoryParameters",
+	                                              "testGetListActivityWithMandatoryParameters"},
 	            description = "mailchimp {getListActivity} integration test with optional parameters.")
 	    public void testGetListActivityWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getListActivity");
@@ -352,7 +355,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getListActivity_negative.json");
 
 
-	        Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+	        Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be " +
+	                                                                           "found.");
 	        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
 	    }
 
@@ -367,8 +371,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateList_mandatory.json");
 	        String apiEndPoint =
-	                connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion") + "/lists/"
-	                + connectorProperties.getProperty("listId");
+	                connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+	                + "/lists/" + connectorProperties.getProperty("listId");
 	        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
 	        Assert.assertEquals(connectorProperties.getProperty("newCompany"),
@@ -396,8 +400,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateList_optional.json");
 
 	        String apiEndPoint =
-	                connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion") + "/lists/"
-	                + connectorProperties.getProperty("listIdOpt");
+	                connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+	                + "/lists/" + connectorProperties.getProperty("listIdOpt");
 	        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
 	        Assert.assertEquals(connectorProperties.getProperty("newNameOpt"),
@@ -442,7 +446,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 
 	        esbRequestHeadersMap.put("Action", "urn:subscribeOrUnsubscribeListMembers");
 	        RestResponse<JSONObject> esbRestResponse =
-	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "subscribeOrUnsubscribeListMembers_mandatory.json");
+	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+	                                    "subscribeOrUnsubscribeListMembers_mandatory.json");
 
 	        Assert.assertTrue(esbRestResponse.getBody().toString().contains("new_members"));
 	        Assert.assertTrue(esbRestResponse.getBody().toString().contains("updated_members"));
@@ -455,11 +460,13 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	     * @throws JSONException
 	     * @throws IOException
 	     */
-	    @Test(groups = { "wso2.esb" }, description = "mailchimp {subscribeOrUnsubscribeListMembers} integration test negative case.")
+	    @Test(groups = { "wso2.esb" }, description = "mailchimp {subscribeOrUnsubscribeListMembers} integration test " +
+	                                                 "negative case.")
 	    public void testSubscribeOrUnsubscribeListMembersWithNegativeCase() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:subscribeOrUnsubscribeListMembers");
 	        RestResponse<JSONObject> esbRestResponse =
-	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "subscribeOrUnsubscribeListMembers_negative.json");
+	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
+	                                    "subscribeOrUnsubscribeListMembers_negative.json");
 
 	        Assert.assertEquals(esbRestResponse.getBody().getJSONArray("errors").getJSONObject(0).getString("message"),
 	                            "Required fields were not provided: email_address");
@@ -1112,7 +1119,8 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	/**
 	 * Positive test case for deleteCampaign method with mandatory parameters.
 	 */
-	@Test(groups = { "wso2.esb" }, priority = 4, description = "mailchimp {deleteCampaign} integration test with mandatory parameters.")
+	@Test(groups = { "wso2.esb" }, priority = 4, description = "mailchimp {deleteCampaign} integration test with " +
+	                                                           "mandatory parameters.")
 	public void testDeleteCampaignWithMandatoryParameters() throws IOException, JSONException {
 
 		esbRequestHeadersMap.put("Action", "urn:deleteCampaign");
@@ -1134,8 +1142,262 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteCampaign_negative.json");
 
-		Assert.assertEquals(esbRestResponse.getBody().getString("detail"),
-		                    "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for listCampaignAbuseReports method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {listCampaignAbuseReports} integration test with mandatory parameters.")
+	public void testListCampaignAbuseReportsWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listCampaignAbuseReports");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaignAbuseReports_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/" + connectorProperties.getProperty("campaignId") + "/abuse-reports";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for listCampaignAbuseReports method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {listCampaignAbuseReports} integration test negative case.")
+	public void testListCampaignAbuseReportsWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listCampaignAbuseReports");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaignAbuseReports_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for listClickReports method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {listClickReports} integration test with mandatory parameters.")
+	public void testListClickReportsWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listClickReports");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listClickReports_mandatory.json");
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/" + connectorProperties.getProperty("campaignId") + "/click-details";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for listClickReports method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {listClickReports} integration test negative case.")
+	public void testListClickReportsWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listClickReports");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listClickReports_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for listReports method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, description = "mailchimp {listReports} integration test with mandatory parameters.")
+	public void testListReportsWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listReports");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listReports_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Positive test case for listSentTo method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {listSentTo} integration test with mandatory parameters.")
+	public void testListSentToWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listSentTo");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listSentTo_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/"  + connectorProperties.getProperty("campaignId") + "/sent-to";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for listSentTo method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {listSentTo} integration test negative case.")
+	public void testListSentToWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listSentTo");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listSentTo_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for listUnsubscribes method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {listUnsubscribes} integration test with mandatory parameters.")
+	public void testListUnsubscribesWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listUnsubscribes");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listUnsubscribes_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/"  + connectorProperties.getProperty("campaignId") + "/unsubscribed";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for listUnsubscribes method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {listUnsubscribes} integration test negative case.")
+	public void testListUnsubscribesWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listUnsubscribes");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listUnsubscribes_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for getLocation method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {getLocation} integration test with mandatory parameters.")
+	public void testGetLocationWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:getLocation");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getLocation_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/"  + connectorProperties.getProperty("campaignId") + "/locations";
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for getLocation method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {getLocation} integration test negative case.")
+	public void testGetLocationWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:listUnsubscribes");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getLocation_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
+	}
+
+	/**
+	 * Positive test case for getReport method with mandatory parameters.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(enabled = true, dependsOnMethods = {"testCreateCampaignWithMandatoryParameters"},
+			description = "mailchimp {getReport} integration test with mandatory parameters.")
+	public void testGetReportWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:getReport");
+
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getReport_mandatory.json");
+
+		String apiEndPoint =
+				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion")
+				+ "/reports/"  + connectorProperties.getProperty("campaignId");
+		RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+
+		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 200);
+		Assert.assertEquals(apiRestResponse.getHttpStatusCode(), 200);
+	}
+
+	/**
+	 * Negative test case for getReport method.
+	 *
+	 * @throws JSONException
+	 * @throws IOException
+	 */
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {getReport} integration test negative case.")
+	public void testGetReportWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:getReport");
+		RestResponse<JSONObject> esbRestResponse =
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getReport_negative.json");
+
+		Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be found.");
 		Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
 	}
 }

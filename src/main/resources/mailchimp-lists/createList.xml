@@ -40,32 +40,19 @@
     <parameter name="visibility" description="Whether the list is public or private."/>
 
     <sequence>
-        <property name="uri.var.name" expression="$func:name"/>
-        <property name="uri.var.company" expression="$func:company"/>
-        <property name="uri.var.address1" expression="$func:address1"/>
-        <property name="uri.var.address2" expression="$func:address2"/>
-        <property name="uri.var.city" expression="$func:city"/>
-        <property name="uri.var.state" expression="$func:state"/>
-        <property name="uri.var.zip" expression="$func:zip"/>
-        <property name="uri.var.country" expression="$func:country"/>
-        <property name="uri.var.phone" expression="$func:phone"/>
-        <property name="uri.var.permissionReminder" expression="$func:permissionReminder"/>
-        <property name="uri.var.useArchiveBar" expression="$func:useArchiveBar"/>
-        <property name="uri.var.fromName" expression="$func:fromName"/>
-        <property name="uri.var.fromEmail" expression="$func:fromEmail"/>
-        <property name="uri.var.subject" expression="$func:subject"/>
-        <property name="uri.var.language" expression="$func:language"/>
-        <property name="uri.var.notifyOnSubscribe" expression="$func:notifyOnSubscribe"/>
-        <property name="uri.var.notifyOnUnsubscribe" expression="$func:notifyOnUnsubscribe"/>
-        <property name="uri.var.emailTypeOption" expression="$func:emailTypeOption"/>
-        <property name="uri.var.visibility" expression="$func:visibility"/>
+        <property name="address2" expression="$func:address2"/>
+        <property name="phone" expression="$func:phone"/>
+        <property name="useArchiveBar" expression="$func:useArchiveBar"/>
+        <property name="notifyOnSubscribe" expression="$func:notifyOnSubscribe"/>
+        <property name="notifyOnUnsubscribe" expression="$func:notifyOnUnsubscribe"/>
+        <property name="visibility" expression="$func:visibility"/>
 
-        <filter source="boolean($ctx:uri.var.useArchiveBar)" regex="true">
+        <filter source="boolean($ctx:useArchiveBar)" regex="true">
             <then>
-                <property name="uri.var.useArchiveBar" expression="$func:useArchiveBar"/>
+                <property name="useArchiveBar" expression="$func:useArchiveBar"/>
             </then>
             <else>
-                <property name="uri.var.useArchiveBar" value="true"/>
+                <property name="useArchiveBar" value="true"/>
             </else>
         </filter>
         <payloadFactory media-type="json">
@@ -92,31 +79,30 @@
                 }
             </format>
             <args>
-                <arg expression="$ctx:uri.var.name"/>
-                <arg expression="$ctx:uri.var.company"/>
-                <arg expression="$ctx:uri.var.address1"/>
-                <arg expression="$ctx:uri.var.city"/>
-                <arg expression="$ctx:uri.var.state"/>
-                <arg expression="$ctx:uri.var.zip"/>
-                <arg expression="$ctx:uri.var.country"/>
-                <arg expression="$ctx:uri.var.permissionReminder"/>
-                <arg expression="$ctx:uri.var.fromName"/>
-                <arg expression="$ctx:uri.var.fromEmail"/>
-                <arg expression="$ctx:uri.var.subject"/>
-                <arg expression="$ctx:uri.var.language"/>
-                <arg expression="$ctx:uri.var.emailTypeOption"/>
-                <arg expression="$ctx:uri.var.useArchiveBar"/>
+                <arg expression="$func:name"/>
+                <arg expression="$func:company"/>
+                <arg expression="$func:address1"/>
+                <arg expression="$func:city"/>
+                <arg expression="$func:state"/>
+                <arg expression="$func:zip"/>
+                <arg expression="$func:country"/>
+                <arg expression="$func:permissionReminder"/>
+                <arg expression="$func:fromName"/>
+                <arg expression="$func:fromEmail"/>
+                <arg expression="$func:subject"/>
+                <arg expression="$func:language"/>
+                <arg expression="$func:emailTypeOption"/>
+                <arg expression="$ctx:useArchiveBar"/>
             </args>
         </payloadFactory>
         <script language="js">
             <![CDATA[
                 var payload = mc.getPayloadJSON();
-                var address2 = mc.getProperty('uri.var.address2');
-                var phone = mc.getProperty('uri.var.phone');
-                var company = mc.getProperty('uri.var.company');
-                var notifyOnSubscribe = mc.getProperty('uri.var.notifyOnSubscribe');
-                var notifyOnUnsubscribe = mc.getProperty('uri.var.notifyOnUnsubscribe');
-                var visibility = mc.getProperty('uri.var.visibility');
+                var address2 = mc.getProperty('address2');
+                var phone = mc.getProperty('phone');
+                var notifyOnSubscribe = mc.getProperty('notifyOnSubscribe');
+                var notifyOnUnsubscribe = mc.getProperty('notifyOnUnsubscribe');
+                var visibility = mc.getProperty('visibility');
 
                 if (address2 != null && address2 != "") {
                     payload.contact.address2 = address2;

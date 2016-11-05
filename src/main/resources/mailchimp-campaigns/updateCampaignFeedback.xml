@@ -23,32 +23,38 @@
     <parameter name="message" description="The new content of the feedback."/>
     <parameter name="isComplete" description="The status of feedback."/>
     <sequence>
-        <property name="uri.var.blockId" expression="$func:blockId"/>
-        <property name="uri.var.message" expression="$func:message"/>
-        <property name="uri.var.isComplete" expression="$func:isComplete"/>
+        <property name="blockId" expression="$func:blockId"/>
+        <property name="isComplete" expression="$func:isComplete"/>
         <property name="uri.var.campaignId" expression="$func:campaignId"/>
         <property name="uri.var.feedbackId" expression="$func:feedbackId"/>
+
+        <filter source="boolean($ctx:isComplete)" regex="true">
+            <then>
+                <property name="isComplete" expression="$func:isComplete"/>
+            </then>
+            <else>
+                <property name="isComplete" value="false"/>
+            </else>
+        </filter>
         <payloadFactory media-type="json">
             <format>
                 {
-                "message":"$1"
+                "message":"$1",
+                "is_complete":$2
                 }
             </format>
             <args>
-                <arg expression="$ctx:uri.var.message"/>
+                <arg expression="$func:message"/>
+                <arg expression="$ctx:isComplete"/>
             </args>
         </payloadFactory>
         <script language="js">
             <![CDATA[
-            var blockId = mc.getProperty('uri.var.blockId');
-            var isComplete = mc.getProperty('uri.var.isComplete');
+            var blockId = mc.getProperty('blockId');
             var payload = mc.getPayloadJSON();
 
             if (blockId != null && blockId != ""){
                 payload.block_id = parseInt(blockId)
-            }
-            if (isComplete != null && isComplete != ""){
-                payload.is_complete = isComplete
             }
             mc.setPayloadJSON(payload);
          ]]>

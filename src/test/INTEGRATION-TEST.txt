@@ -9,88 +9,65 @@ Pre-requisites:
 
 Tested Platform: 
 
- - Microsoft Windows 7
- - UBUNTU 13.04
- - WSO2 ESB 4.9.0
- - Java 1.7
+ - UBUNTU 14.04
+ - WSO2 ESB 5.0.0
 
-Note:
-	This Test Suite can be executed by setting up a new MailChimp trial account and following all the instruction given below.
-	
-Special Note:
-	Please note that the following Mailchimp connector methods have not been added to the Mailchimp Integration Test Suite,
-	Since they couldn't be orchestrated in the Test Suite due to them requiring manual involvement to run successful.
-		-listCampaignClicks
-		-listCampaignClickers
-		-listCampaignOpeners
+Steps to follow in setting integration test.
 
-Steps to follow when executing the Test Suite:
+ 1. Download ESB 5.0.0 from official website and extract the ESB and add "-XX:-UseSplitVerifier" under $JVM_MEM_OPTS into {ESB_HOME}/bin/wso2server.sh.
 
- 1. Download ESB 4.9.0 from official website.
+ 2. Compress modified ESB and copy that zip file in to location "{MAILCHIMP_CONNECTOR_HOME}/repository/".
 
- 2. ESB should be configured as below.
-	 Please make sure that the below mentioned Axis configurations are enabled ({MAILCHIMP_CONNECTOR_HOME}/repository/conf/axis2/axis2.xml).
-		
-		<messageFormatter contentType="application/json"
-							  class="org.apache.synapse.commons.json.JsonStreamFormatter"/>
-										  
-		<messageBuilder contentType="application/json"
-							  class="org.apache.synapse.commons.json.JsonStreamBuilder"/>
-
-		<messageFormatter contentType="text/html"                             
-							  class="org.wso2.carbon.relay.ExpandingMessageFormatter"/>
-
-		<messageBuilder contentType="text/html"                                
-							  class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
- 
-3. Compress modified ESB as wso2esb-4.9.0.zip and copy that zip file in to location "{MAILCHIMP_CONNECTOR_HOME}/repository/".
-
-4. Create a MailChimp account and obtain an API Key.
-	i) 	Using the URL "https://login.mailchimp.com/signup?" create a MailChimp online account.
+ 3. Create a MailChimp account
+	i)  Using the URL "https://login.mailchimp.com/signup?" create a MailChimp online account.
 	ii)	Once an account is created a verification mail will be send to your mail account. Please click the Active Account URL link in the mail.
-	iii) 	Once you have click the mail link it would take you to another page to finalize your MailChimp account creation.
-	iv)	Use the credentials given by you to login into MailChimp account and Click your profile name to expand the Account Panel, and choose Account.
-	v)	Click the Extras drop-down menu and choose API keys.
-	vi)	Copy an existing API key or click the Create A Key button.
-        vii)	Name your key descriptively, so you know what application uses that key.
-	viii) 	Create at least two Lists in the Mailchimp account you created before executing the Test Suite for the first time.
-		(Once you login to your Mailchimp account, on your Welcome Screen, click on Lists on the left pane and then Click Create List to create lists)
+	iii)Once you have click the mail link it would take you to another page to finalize your MailChimp account creation.
+
+ 4. Register a new application and obtain the access token.(Go to http://developer.mailchimp.com/documentation/mailchimp/guides/how-to-use-oauth2/)
 			
  5. Update the MailChimp properties file at location "{MAILCHIMP_CONNECTOR_HOME}/src/test/resources/artifacts/ESB/connector/config" as below.
 	
-	i)      apiUrl 			       -  Base endpoint URL of the Mailchimp API. Use the format "https://[dc].api.mailchimp.com" where <dc> is the the portion after the dash in your API Key. (e.g https://us2.api.mailchimp.com)
-	ii)	apiKey			       -  Use the api key obtained in Step 4(v).
-	iii)	createTemplateMandatoryName    -  Name given for Template created in Mandatory Case.
-	iv)	createTemplateOptionalName     -  Name given for Template created in Optional Case.
-	v)	createTemplateNegativeName     -  Name given for Template created in Negative Case.
-	vi)	createTemplateHTMLMandatory    -  HTML Content of the Template created in Mandatory Case.
-	vii)	createTemplateHTMLOptional     -  HTML Content of the Template created in Optional Case.	
-	viii)   createTemplateHTMLNegative     -  HTML Content of the Template created in Negative Case.
-	ix)	folderName		       -  Name of the folder to be created in Mailchimp during the test run.
-	x)	campaignType		       -  Type of campaign to be created in createDraftCampaign methods. Use "regular".
-	xi)	createCampaignMandatoryText    -  Text to include in the Campaign created in Mandatory Case.
-	xii)	createCampaignOptionalText     -  Text to include in the Campaign created in Optional Case.
-	xiii)   createCampaignSubjectMandatory -  Subject to include in the Campaign created in Mandatory Case.
-	xiv)	createCampaignSubjectOptional  -  Subject to include in the Campaign created in Optional Case.
-	xv)	createCampaignEmail	       -  Email address to be used in createCampaign. (Need not be a real one - Stick to email format though)
-	xvi)	createCampaignFromName	       -  From name to be used while creating the campaign.
-	xvii)	createCampaignToName	       -  To name to be used while creating the campaign.
-	xviii)  createCampaignTitleOptional    -  Optional Title to be used while creating campaign.
-	xix)	email			       -  Email address to be subscribed to the List. (Need not be a real one - Stick to email format though)
-	xx)	emailOptional	     	       -  Email address to be subscribed to the List. (Need not be a real one - Stick to email format though)
-	xxi)	saveStatus		       -  Status value assigned by the API for created campaigns which are not yet sent. Use "save"
-	xxii)	sentStatus		       -  Status value assigned by the API for sent campaigns. Use "sent"
-	xxiii)  sleepTimeoutForSending         -  Time allowed for the campaign to be sent. Use "10000".
-	xxiv)	updateEmailType		       -  Type of the email preference (e.g. html)
-	xxv)	mcLanguage		       -  Language preferred by the member (e.g. en).
-	xxvi)	updatedEmail	  	       -  Email address to be updated in the memeber. (e.g. yas.mailchimp@gmail.com) 
-	xxvii)	latitude		       -  Latitude specified for the member's geographical location.
-	xxviii) longitude		       -  Longitutde specified for the member's geographical location.
-		
-	* Properties iii), iv), v), ix), xiii), xiv), xix), xx), xxvi) needs to be changed for each execution of the Test Suite.
-		Hint: Use a number along with some text and increment the number for each run to change property values.
+	i)      apiUrl                      -   Base endpoint URL of the Mailchimp API.
+	ii)     apiVersion                  -   The version of the Mailchimp API.
+	iii)    accessToken                 -   Value of the Access Token to access the Mailchimp API via request.
+	iv)     name                        -   Use a valid name to create list.
+	v)      nameOpt                     -   Use a valid name to create list which is not same as step 5 v).
+	vi)     company                     -   Use a valid name for the company.
+	vii)    address1                    -   Use a valid address.
+	viii)   city                        -   The city for the list contact.
+	ix)     state                       -   The state for the list contact.
+	x)      zip                         -   The postal or zip code for the list contact.
+	xi)     country                     -   A two-character ISO3166 country code.
+	xii)    fromName                    -   The from name for campaigns sent to this list.
+	xiii)   fromEmail                   -   The from email for campaigns sent to this list.
+	xiv)    subject                     -   The subject line for campaigns sent to this list.
+	xv)     language                    -   The language for this lists’s forms.
+	xvi)    emailTypeOption             -   Boolean value, whether the list supports multiple formats for emails.
+	xvii)   phone                       -   The phone number for the list contact.
+	xviii)  visibility                  -   Whether the list is public or private.
+	xix)    notifyOnSubscribe           -   The email address to send subscribe notifications.
+	xx)     newName                     -   The new name of the list to update.
+	xxi)    newNameOpt                  -   The new name of the list to update which is not same as step 5 xx).
+	xxii)   newPhoneOpt                 -   The new phone no of the list to update.
+	xxiii)  newCompany                  -   The new company name to update the list.
+	xxiv)   newFromName                 -   The new from name for campaigns sent to this list.
+	xxv)    newFromEmail                -   The new from email for campaigns sent to this list.
+	xxvi)   members                     -   An array of objects, each representing an email address and the subscription
+	                                        status for a specific list.
+	xxvii)  updateExisting              -   Boolean value, whether this batch operation will change existing members
+	                                        subscription status.
+	xxviii) subjectLine                 -   The subject line for the campaign.
+	xxix)   subjectLineOpt              -   The subject line for the campaign which is not same as step 5 xxviii).
+	xxx)    newSubjectLine              -   The new subject line for the campaign.
+	xxxi)   newSubjectLineOpt           -   The new subject line for the campaign.
+	xxxii)  campaignFromName            -   The 'from' name on the campaign (not an email address).
+	xxxiii) replyTo                     -   The reply-to email address for the campaign.
+	xxxiv)  type                        -   The campaign type.
+	xxxv)   status                      -   The status of the campaign.
+	xxxvi)  message                     -   The content of the feedback.
+	xxxvii) messageOpt                  -   The content of the feedback.
+	xxxviii)newMessage                  -   The new content of the feedback.
+
 	
  6. Navigate to "{MAILCHIMP_CONNECTOR_HOME}/" and run the following command.
          $ mvn clean install
-	  
-	  Note:- Account is in Trial mode (can only send campaigns to less than 100 emails).

@@ -95,6 +95,7 @@
             <property expression="json-eval($.members)" name="members"/>
             <property expression="json-eval($.updateExisting)" name="updateExisting"/>
             <property expression="json-eval($.toName)" name="toName"/>
+            <property expression="json-eval($.linkId)" name="linkId"/>
             <mailchimp.init>
                 <apiUrl>{$ctx:apiUrl}</apiUrl>
                 <apiVersion>{$ctx:apiVersion}</apiVersion>
@@ -343,6 +344,71 @@
                         <members>{$ctx:members}</members>
                         <updateExisting>{$ctx:updateExisting}</updateExisting>
                     </mailchimp.subscribeOrUnsubscribeListMembers>
+                </case>
+                <case regex="urn:listReports">
+                    <mailchimp.listReports>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <type>{$ctx:type}</type>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.listReports>
+                </case>
+                <case regex="urn:listSentTo">
+                    <mailchimp.listSentTo>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.listSentTo>
+                </case>
+                <case regex="urn:listUnsubscribes">
+                    <mailchimp.listUnsubscribes>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.listUnsubscribes>
+                </case>
+                <case regex="urn:listClickReports">
+                    <mailchimp.listClickReports>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                        <count>{$ctx:count}</count>
+                        <offset>{$ctx:offset}</offset>
+                    </mailchimp.listClickReports>
+                </case>
+                <case regex="urn:listCampaignAbuseReports">
+                    <mailchimp.listCampaignAbuseReports>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.listCampaignAbuseReports>
+                </case>
+                <case regex="urn:getReport">
+                    <mailchimp.getReport>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getReport>
+                </case>
+                <case regex="urn:getLocation">
+                    <mailchimp.getLocation>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getLocation>
+                </case>
+                <case regex="urn:getClickReport">
+                    <mailchimp.getClickReport>
+                        <fields>{$ctx:fields}</fields>
+                        <excludeFields>{$ctx:excludeFields}</excludeFields>
+                        <linkId>{$ctx:linkId}</linkId>
+                        <campaignId>{$ctx:campaignId}</campaignId>
+                    </mailchimp.getClickReport>
                 </case>
             </switch>
             <respond/>
