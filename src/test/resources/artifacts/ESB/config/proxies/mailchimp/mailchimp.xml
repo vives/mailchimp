@@ -42,7 +42,6 @@
             <property expression="json-eval($.replyTo)" name="replyTo"/>
             <property expression="json-eval($.autoFooter)" name="autoFooter"/>
             <property expression="json-eval($.folderId)" name="folderId"/>
-            <property expression="json-eval($.segmentOpts)" name="segmentOpts"/>
             <property expression="json-eval($.authenticate)" name="authenticate"/>
             <property expression="json-eval($.autoFbPost)" name="autoFbPost"/>
             <property expression="json-eval($.waitTime)" name="waitTime"/>
@@ -96,6 +95,24 @@
             <property expression="json-eval($.updateExisting)" name="updateExisting"/>
             <property expression="json-eval($.toName)" name="toName"/>
             <property expression="json-eval($.linkId)" name="linkId"/>
+            <property name="fromNames" expression="json-eval($.fromNames)"/>
+            <property name="replyToAddresses" expression="json-eval($.replyToAddresses)"/>
+            <property name="htmlClicks" expression="json-eval($.htmlClicks)"/>
+            <property name="ecomm360" expression="json-eval($.ecomm360)"/>
+            <property name="goalTracking" expression="json-eval($.goalTracking)"/>
+            <property name="googleAnalytics" expression="json-eval($.googleAnalytics)"/>
+            <property name="clickTale" expression="json-eval($.clickTale)"/>
+            <property name="highRise" expression="json-eval($.highRise)"/>
+            <property name="capsule" expression="json-eval($.capsule)"/>
+            <property name="constrainRssImg" expression="json-eval($.constrainRssImg)"/>
+            <property name="campaignTitle" expression="json-eval($.campaignTitle)"/>
+            <property name="schedule" expression="json-eval($.schedule)"/>
+            <property name="useConversation" expression="json-eval($.useConversation)"/>
+            <property name="autoTweet" expression="json-eval($.autoTweet)"/>
+            <property name="inlineCss" expression="json-eval($.inlineCss)"/>
+            <property name="fbComments" expression="json-eval($.fbComments)"/>
+            <property name="subjectLinesForVariateSettings" expression="json-eval($.subjectLinesForVariateSettings)"/>
+            <property name="sendTimes" expression="json-eval($.sendTimes)"/>
             <mailchimp.init>
                 <apiUrl>{$ctx:apiUrl}</apiUrl>
                 <apiVersion>{$ctx:apiVersion}</apiVersion>
@@ -140,15 +157,15 @@
                         <campaignId>{$ctx:campaignId}</campaignId>
                     </mailchimp.getCampaignContent>
                 </case>
-                <case regex="urn:searchCampaign">
-                    <mailchimp.searchCampaign>
+                <case regex="urn:searchCampaigns">
+                    <mailchimp.searchCampaigns>
                         <fields>{$ctx:fields}</fields>
                         <excludeFields>{$ctx:excludeFields}</excludeFields>
                         <query>{$ctx:query}</query>
                         <snipStart>{$ctx:snipStart}</snipStart>
                         <snipEnd>{$ctx:snipEnd}</snipEnd>
                         <offset>{$ctx:offset}</offset>
-                    </mailchimp.searchCampaign>
+                    </mailchimp.searchCampaigns>
                 </case>
                 <case regex="urn:addCampaignFeedback">
                     <mailchimp.addCampaignFeedback>
@@ -217,6 +234,26 @@
                         <conditions>{$ctx:conditions}</conditions>
                         <title>{$ctx:title}</title>
                         <imageUrl>{$ctx:imageUrl}</imageUrl>
+                        <useConversation>{$ctx:useConversation}</useConversation>
+                        <authenticate>{$ctx:authenticate}</authenticate>
+                        <autoTweet>{$ctx:autoTweet}</autoTweet>
+                        <inlineCss>{$ctx:inlineCss}</inlineCss>
+                        <autoFbPost>{$ctx:autoFbPost}</autoFbPost>
+                        <fbComments>{$ctx:fbComments}</fbComments>
+                        <subjectLinesForVariateSettings>{$ctx:subjectLinesForVariateSettings}</subjectLinesForVariateSettings>
+                        <sendTimes>{$ctx:sendTimes}</sendTimes>
+                        <fromNames>{$ctx:fromNames}</fromNames>
+                        <replyToAddresses>{$ctx:replyToAddresses}</replyToAddresses>
+                        <htmlClicks>{$ctx:htmlClicks}</htmlClicks>
+                        <ecomm360>{$ctx:ecomm360}</ecomm360>
+                        <goalTracking>{$ctx:goalTracking}</goalTracking>
+                        <googleAnalytics>{$ctx:googleAnalytics}</googleAnalytics>
+                        <clickTale>{$ctx:clickTale}</clickTale>
+                        <highRise>{$ctx:highRise}</highRise>
+                        <capsule>{$ctx:capsule}</capsule>
+                        <constrainRssImg>{$ctx:constrainRssImg}</constrainRssImg>
+                        <campaignTitle>{$ctx:campaignTitle}</campaignTitle>
+                        <schedule>{$ctx:schedule}</schedule>
                     </mailchimp.createCampaign>
                 </case>
                 <case regex="urn:updateCampaign">
@@ -226,8 +263,8 @@
                         <subjectLine>{$ctx:subjectLine}</subjectLine>
                         <fromName>{$ctx:fromName}</fromName>
                         <replyTo>{$ctx:replyTo}</replyTo>
-                        <toName>{$ctx:toName}</toName>
                         <autoFooter>{$ctx:autoFooter}</autoFooter>
+                        <toName>{$ctx:toName}</toName>
                         <folderId>{$ctx:folderId}</folderId>
                         <waitTime>{$ctx:waitTime}</waitTime>
                         <testSize>{$ctx:testSize}</testSize>
@@ -241,6 +278,28 @@
                         <savedSegmentId>{$ctx:savedSegmentId}</savedSegmentId>
                         <match>{$ctx:match}</match>
                         <conditions>{$ctx:conditions}</conditions>
+                        <title>{$ctx:title}</title>
+                        <imageUrl>{$ctx:imageUrl}</imageUrl>
+                        <useConversation>{$ctx:useConversation}</useConversation>
+                        <authenticate>{$ctx:authenticate}</authenticate>
+                        <autoTweet>{$ctx:autoTweet}</autoTweet>
+                        <inlineCss>{$ctx:inlineCss}</inlineCss>
+                        <autoFbPost>{$ctx:autoFbPost}</autoFbPost>
+                        <fbComments>{$ctx:fbComments}</fbComments>
+                        <subjectLinesForVariateSettings>{$ctx:subjectLinesForVariateSettings}</subjectLinesForVariateSettings>
+                        <sendTimes>{$ctx:sendTimes}</sendTimes>
+                        <fromNames>{$ctx:fromNames}</fromNames>
+                        <replyToAddresses>{$ctx:replyToAddresses}</replyToAddresses>
+                        <htmlClicks>{$ctx:htmlClicks}</htmlClicks>
+                        <ecomm360>{$ctx:ecomm360}</ecomm360>
+                        <goalTracking>{$ctx:goalTracking}</goalTracking>
+                        <googleAnalytics>{$ctx:googleAnalytics}</googleAnalytics>
+                        <clickTale>{$ctx:clickTale}</clickTale>
+                        <highRise>{$ctx:highRise}</highRise>
+                        <capsule>{$ctx:capsule}</capsule>
+                        <constrainRssImg>{$ctx:constrainRssImg}</constrainRssImg>
+                        <campaignTitle>{$ctx:campaignTitle}</campaignTitle>
+                        <schedule>{$ctx:schedule}</schedule>
                     </mailchimp.updateCampaign>
                 </case>
                 <case regex="urn:createList">
@@ -352,6 +411,8 @@
                         <type>{$ctx:type}</type>
                         <count>{$ctx:count}</count>
                         <offset>{$ctx:offset}</offset>
+                        <beforeSendTime>{$ctx:beforeSendTime}</beforeSendTime>
+                        <sinceSendTime>{$ctx:sinceSendTime}</sinceSendTime>
                     </mailchimp.listReports>
                 </case>
                 <case regex="urn:listSentTo">

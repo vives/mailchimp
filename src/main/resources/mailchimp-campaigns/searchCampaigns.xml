@@ -16,7 +16,7 @@
 ~  specific language governing permissions and limitations
 ~  under the License.
 -->
-<template name="searchCampaign" xmlns="http://ws.apache.org/ns/synapse">
+<template name="searchCampaigns" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="fields" description="A comma-separated list of fields to return."/>
     <parameter name="excludeFields" description="A comma-separated list of fields to exclude."/>
     <parameter name="query" description="The search query used to filter results."/>

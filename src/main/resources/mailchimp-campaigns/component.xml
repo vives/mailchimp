@@ -42,8 +42,8 @@
             <file>getCampaignContent.xml</file>
             <description>Get campaign content.</description>
         </component>
-        <component name="searchCampaign">
-            <file>searchCampaign.xml</file>
+        <component name="searchCampaigns">
+            <file>searchCampaigns.xml</file>
             <description>Search Campaigns.</description>
         </component>
         <component name="addCampaignFeedback">

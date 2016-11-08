@@ -45,8 +45,7 @@
                description="The percentage of recipients to send the test combinations to, must be a value between 10
                and 100."/>
     <parameter name="subjectLinesForVariateSettings"
-               description="The possible subject lines to test. If no subject lines are provided, settings.subject_line
-               will be used."/>
+               description="The possible subject lines to test."/>
     <parameter name="sendTimes"
                description="The possible send times to test. The times provided should be in the format
                YYYY-MM-DD HH:MM:SS"/>
@@ -55,10 +54,10 @@
     <parameter name="opens" description="Boolean type, whether to track opens. Defaults to true."/>
     <parameter name="htmlClicks"
                description="Boolean type, whether to track clicks in the HTML version of the campaign.
-               Defaults to true. "/>
+               Defaults to true."/>
     <parameter name="textClicks"
                description="Boolean type, whether to track clicks in the plain-text version of the campaign.
-               Defaults to true. "/>
+               Defaults to true."/>
     <parameter name="goalTracking" description="Boolean type, whether to enable Goal tracking."/>
     <parameter name="ecomm360" description="Boolean type, whether to enable eCommerce360 tracking."/>
     <parameter name="googleAnalytics" description="The custom slug for Google Analytics tracking (max of 50 bytes)."/>

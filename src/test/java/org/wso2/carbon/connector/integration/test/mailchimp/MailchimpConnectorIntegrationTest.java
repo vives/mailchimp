@@ -36,8 +36,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 
 	private Map<String, String> apiRequestHeadersMap = new HashMap<String, String>();
 
-	private String apiBaseUrl;
-
 	/**
 	 * Set up the environment.
 	 */
@@ -86,7 +84,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	@Test(enabled = true, description = "mailchimp {createList} integration test with optional parameters.")
 	public void testCreateListWithOptionalParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:createList");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "createList_optional.json");
 		final String listIdOpt = esbRestResponse.getBody().getString("id");
@@ -141,7 +138,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	    @Test(enabled = true, description = "mailchimp {listLists} integration test with mandatory parameters.")
 	    public void testListListsWithMandatoryParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:listLists");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listLists_mandatory.json");
 
@@ -163,7 +159,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	    @Test(enabled = true, description = "mailchimp {listLists} integration test with optional parameters.")
 	    public void testListListsWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:listLists");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listLists_optional.json");
 
@@ -187,7 +182,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {listListAbuseReports} integration test with mandatory parameters.")
 	    public void testListListAbuseReportsWithMandatoryParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:listListAbuseReports");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listListAbuseReports_mandatory.json");
 
@@ -212,7 +206,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {listListAbuseReports} integration test with optional parameters.")
 	    public void testListListAbuseReportsWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:listListAbuseReports");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listListAbuseReports_optional.json");
 
@@ -237,7 +230,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {getList} integration test with mandatory parameters.")
 	    public void testGetListWithMandatoryParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getList");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getList_mandatory.json");
 
@@ -262,7 +254,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {getList} integration test with optional parameters.")
 	    public void testGetListWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getList");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getList_optional.json");
 
@@ -303,7 +294,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {getListActivity} integration test with mandatory parameters.")
 	    public void testGetListActivityWithMandatoryParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getListActivity");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getListActivity_mandatory.json");
 
@@ -328,7 +318,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {getListActivity} integration test with optional parameters.")
 	    public void testGetListActivityWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:getListActivity");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getListActivity_optional.json");
 
@@ -354,7 +343,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getListActivity_negative.json");
 
-
 	        Assert.assertEquals(esbRestResponse.getBody().getString("detail"), "The requested resource could not be " +
 	                                                                           "found.");
 	        Assert.assertEquals(esbRestResponse.getHttpStatusCode(), 404);
@@ -366,7 +354,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	    @Test(groups = {"wso2.esb"},priority = 1, dependsOnMethods = {"testCreateListWithMandatoryParameters"},
 	            description = "mailchimp {updateList} integration test with mandatory parameters.")
 	    public void testUpdateListWithMandatoryParameters() throws IOException, JSONException {
-
 	        esbRequestHeadersMap.put("Action", "urn:updateList");
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateList_mandatory.json");
@@ -395,7 +382,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	            description = "mailchimp {updateList} integration test with optional parameters.")
 	    public void testUpdateListWithOptionalParameters() throws IOException, JSONException {
 	        esbRequestHeadersMap.put("Action", "urn:updateList");
-
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateList_optional.json");
 
@@ -443,7 +429,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	    @Test(groups = {"wso2.esb"}, dependsOnMethods = {"testCreateListWithMandatoryParameters"},
 	            description = "mailchimp {subscribeOrUnsubscribeListMembers} integration test with mandatory parameters.")
 	    public void testSubscribeOrUnsubscribeListMembersWithMandatoryParameters() throws IOException, JSONException {
-
 	        esbRequestHeadersMap.put("Action", "urn:subscribeOrUnsubscribeListMembers");
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,
@@ -479,7 +464,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	    @Test(groups = {"wso2.esb"}, priority = 3,
 	            description = "mailchimp {deleteList} integration test with mandatory parameters.")
 	    public void testDeleteListWithMandatoryParameters() throws IOException, JSONException {
-
 	        esbRequestHeadersMap.put("Action", "urn:deleteList");
 	        RestResponse<JSONObject> esbRestResponse =
 	                sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteList_mandatory.json");
@@ -509,7 +493,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	@Test(groups = { "wso2.esb" }, dependsOnMethods = { "testCreateListWithMandatoryParameters" },
 			description = "mailchimp {createCampaign} integration test with mandatory parameters.")
 	public void testCreateCampaignWithMandatoryParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:createCampaign");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "createCampaign_mandatory.json");
@@ -533,7 +516,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                                                    "testCreateCampaignWithMandatoryParameters" },
 			description = "mailchimp {createCampaign} integration test with mandatory parameters.")
 	public void testCreateCampaignWithOptionalParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:createCampaign");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "createCampaign_optional.json");
@@ -644,7 +626,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listCampaigns} integration test with mandatory parameters.")
 	public void testListCampaignsWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listCampaigns");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaigns_mandatory.json");
 
@@ -667,7 +648,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listCampaigns} integration test with optional parameters.")
 	public void testListCampaignsWithOptionalParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listCampaigns");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaigns_optional.json");
 
@@ -691,7 +671,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {addCampaignFeedback} integration test with mandatory parameters.")
 	public void testAddCampaignFeedbackWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:addCampaignFeedback");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "addCampaignFeedback_mandatory.json");
 		final String feedbackId = esbRestResponse.getBody().getString("feedback_id");
@@ -756,7 +735,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {getCampaignFeedback} integration test with mandatory parameters.")
 	public void testGetCampaignFeedbackWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:getCampaignFeedback");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getCampaignFeedback_mandatory.json");
 
@@ -781,7 +759,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {getCampaignFeedback} integration test with optional parameters.")
 	public void testGetCampaignFeedbackWithOptionalParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:getCampaignFeedback");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getCampaignFeedback_optional.json");
 
@@ -822,7 +799,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listCampaignFeedback} integration test with mandatory parameters.")
 	public void testListCampaignFeedbackWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listCampaignFeedback");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaignFeedback_mandatory.json");
 
@@ -845,7 +821,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listCampaignFeedback} integration test with optional parameters.")
 	public void testListCampaignFeedbackWithOptionalParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listCampaignFeedback");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaignFeedback_optional.json");
 
@@ -859,7 +834,7 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	}
 
 	/**
-	 * Negative test case for getCampaignFeedback method.
+	 * Negative test case for listCampaignFeedback method.
 	 *
 	 * @throws JSONException
 	 * @throws IOException
@@ -884,7 +859,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {getCampaignContent} integration test with mandatory parameters.")
 	public void testGetCampaignContentWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:getCampaignContent");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getCampaignContent_mandatory.json");
 
@@ -923,7 +897,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {getSendCheckList} integration test with mandatory parameters.")
 	public void testGetSendCheckListWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:getSendCheckList");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getSendCheckList_mandatory.json");
 
@@ -953,18 +926,17 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	}
 
 	/**
-	 * Positive test case for searchCampaign method with mandatory parameters.
+	 * Positive test case for searchCampaigns method with mandatory parameters.
 	 *
 	 * @throws JSONException
 	 * @throws IOException
 	 */
 	@Test(enabled = true, dependsOnMethods = { "testCreateCampaignWithMandatoryParameters" },
-			description = "mailchimp {searchCampaign} integration test with mandatory parameters.")
-	public void testSearchCampaignWithMandatoryParameters() throws IOException, JSONException {
-		esbRequestHeadersMap.put("Action", "urn:searchCampaign");
-
+			description = "mailchimp {searchCampaigns} integration test with mandatory parameters.")
+	public void testSearchCampaignsWithMandatoryParameters() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:searchCampaigns");
 		RestResponse<JSONObject> esbRestResponse =
-				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "searchCampaign_mandatory.json");
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "searchCampaigns_mandatory.json");
 
 		String apiEndPoint =
 				connectorProperties.getProperty("apiUrl") + "/" + connectorProperties.getProperty("apiVersion") +
@@ -976,16 +948,16 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	}
 
 	/**
-	 * Negative test case for searchCampaign method.
+	 * Negative test case for searchCampaigns method.
 	 *
 	 * @throws JSONException
 	 * @throws IOException
 	 */
-	@Test(groups = { "wso2.esb" }, description = "mailchimp {searchCampaign} integration test negative case.")
-	public void testSearchCampaignWithNegativeCase() throws IOException, JSONException {
-		esbRequestHeadersMap.put("Action", "urn:searchCampaign");
+	@Test(groups = { "wso2.esb" }, description = "mailchimp {searchCampaigns} integration test negative case.")
+	public void testSearchsCampaignWithNegativeCase() throws IOException, JSONException {
+		esbRequestHeadersMap.put("Action", "urn:searchCampaigns");
 		RestResponse<JSONObject> esbRestResponse =
-				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "searchCampaign_negative.json");
+				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "searchCampaigns_negative.json");
 
 		Assert.assertEquals(esbRestResponse.getBody().getString("detail"),
 		                    "Please provide 'query' parameter in the query string to search");
@@ -999,7 +971,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                                                                  "testCreateListWithMandatoryParameters" },
 			description = "mailchimp {updateCampaign} integration test with mandatory parameters.")
 	public void testUpdateCampaignWithMandatoryParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:updateCampaign");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateCampaign_mandatory.json");
@@ -1017,7 +988,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                                                                  "testCreateListWithOptionalParameters" },
 			description = "mailchimp {updateCampaign} integration test with optional parameters.")
 	public void testUpdateCampaignWithOptionalParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:updateCampaign");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateCampaign_optional.json");
@@ -1055,7 +1025,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                                                                  "testAddCampaignFeedbackWithMandatoryParameters" },
 			description = "mailchimp {updateCampaignFeedback} integration test with mandatory parameters.")
 	public void testUpdateCampaignFeedbackWithMandatoryParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:updateCampaignFeedback");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "updateCampaignFeedback_mandatory.json");
@@ -1091,7 +1060,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	                                                                  "testAddCampaignFeedbackWithOptionalParameters" },
 			description = "mailchimp {deleteCampaignFeedback} integration test with mandatory parameters.")
 	public void testDeleteCampaignFeedbackWithMandatoryParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:deleteCampaignFeedback");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteCampaignFeedback_mandatory.json");
@@ -1122,7 +1090,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	@Test(groups = { "wso2.esb" }, priority = 4, description = "mailchimp {deleteCampaign} integration test with " +
 	                                                           "mandatory parameters.")
 	public void testDeleteCampaignWithMandatoryParameters() throws IOException, JSONException {
-
 		esbRequestHeadersMap.put("Action", "urn:deleteCampaign");
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "deleteCampaign_mandatory.json");
@@ -1156,7 +1123,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listCampaignAbuseReports} integration test with mandatory parameters.")
 	public void testListCampaignAbuseReportsWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listCampaignAbuseReports");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listCampaignAbuseReports_mandatory.json");
 
@@ -1195,7 +1161,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listClickReports} integration test with mandatory parameters.")
 	public void testListClickReportsWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listClickReports");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listClickReports_mandatory.json");
 		String apiEndPoint =
@@ -1232,7 +1197,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 	@Test(enabled = true, description = "mailchimp {listReports} integration test with mandatory parameters.")
 	public void testListReportsWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listReports");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listReports_mandatory.json");
 
@@ -1255,7 +1219,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listSentTo} integration test with mandatory parameters.")
 	public void testListSentToWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listSentTo");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listSentTo_mandatory.json");
 
@@ -1294,7 +1257,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {listUnsubscribes} integration test with mandatory parameters.")
 	public void testListUnsubscribesWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:listUnsubscribes");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "listUnsubscribes_mandatory.json");
 
@@ -1333,7 +1295,6 @@ public class MailchimpConnectorIntegrationTest extends ConnectorIntegrationTestB
 			description = "mailchimp {getLocation} integration test with mandatory parameters.")
 	public void testGetLocationWithMandatoryParameters() throws IOException, JSONException {
 		esbRequestHeadersMap.put("Action", "urn:getLocation");
-
 		RestResponse<JSONObject> esbRestResponse =
 				sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap, "getLocation_mandatory.json");
 

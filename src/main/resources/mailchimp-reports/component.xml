@@ -52,7 +52,7 @@
         </component>
         <component name="getCampaignAbuseReport">
             <file>getCampaignAbuseReport.xml</file>
-            <description>Get unsubscribed list members.</description>
+            <description>Get a specific abuse complaints for a campaign.</description>
         </component>
     </subComponents>
 </component>
